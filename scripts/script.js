@@ -30,22 +30,23 @@ function canvasTest() {
 
     console.log("in canvas test");
 
-    var ctx = document.getElementById('canvasTest');
+    var canvasTest = document.getElementById("canvasTest");
+    var ctx=canvasTest.getContext("2d");
+    
+    
+    var imgForCanvas = new Image();
 
-    if (ctx.getContext) {
-        ctx = ctx.getContext('2d');
-        var imgForCanvas = new Image();
 
-        imgForCanvas.width = "50px";
-        imgForCanvas.height = "50px";
-        imgForCanvas.onload = function () {
-            ctx.drawImage(imgForCanvas, 100, 100);
-         console.log(" in loaded function");
+    imgForCanvas.onload = function () {
 
-        }
-        imgForCanvas.src = "images/picture.png"
+        ctx.drawImage(imgForCanvas, 0, 0, imgForCanvas.width, imgForCanvas.height,
+            0, 0, canvasTest.width, canvasTest.height);
+        console.log(" in loaded function");
 
     }
-
+    imgForCanvas.src = "images/picture.png"
 
 }
+
+   
+ 
