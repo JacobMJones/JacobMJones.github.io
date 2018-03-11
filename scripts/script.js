@@ -16,6 +16,9 @@ function Happy() {
 function Idle() {
     currentImages = idleImages;
 }
+function Angry() {
+    currentImages = angryImages;
+}
 
 function Animate() {
     var canvasForAnimation = document.getElementById("canvasForAnimation");
