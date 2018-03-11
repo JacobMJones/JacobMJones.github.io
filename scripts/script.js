@@ -6,7 +6,7 @@ $(document).ready(function () {
 var imgForCanvas = new Image();
 var happyImages = ["images/happy1.png", "images/happy2.png", "images/happy3.png", "images/happy4.png", "images/happy5.png", "images/happy6.png"];
 var idleImages = ["images/idle1.png", "images/idle2.png", "images/idle3.png", "images/idle4.png", "images/idle5.png", "images/idle6.png"];
-
+var angryImages = ["images/angry1.png"]
 var currentImages = idleImages;
 
 function Happy() {
