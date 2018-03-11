@@ -1,28 +1,34 @@
 $(document).ready(function () {
-    console.log("in ready");
 
+    Animate();
 });
 
+var imgForCanvas = new Image();
+var happyImages = ["images/happy1.png", "images/happy2.png", "images/happy3.png", "images/happy4.png", "images/happy5.png", "images/happy6.png"];
+var idleImages = ["images/idle1.png", "images/idle2.png", "images/idle3.png", "images/idle4.png", "images/idle5.png", "images/idle6.png"];
 
-function canvasTest() {
-    var canvasTest = document.getElementById("canvasTest");
-    var ctx = canvasTest.getContext("2d");
-    var imgForCanvas = new Image();
+var currentImages = idleImages;
 
-    //loop through Images 
+function Happy() {
+    currentImages = happyImages;
+}
+
+function Idle() {
+    currentImages = idleImages;
+}
+
+function Animate() {
+    var canvasForAnimation = document.getElementById("canvasForAnimation");
+    var ctx = canvasForAnimation.getContext("2d");
     var i = 0;
-    var pics = ["images/picture.png", "images/picture2.png", "images/picture3.png"];
 
     function toggle() {
-        imgForCanvas.src = pics[i]; 
+        imgForCanvas.src = currentImages[i];
         imgForCanvas.onload = function () {
             ctx.drawImage(imgForCanvas, 0, 0, imgForCanvas.width, imgForCanvas.height,
-                0, 0, canvasTest.width, canvasTest.height);
+                0, 0, canvasForAnimation.width, canvasForAnimation.height);
         }
-        i = (i + 1) % pics.length; 
-
-
+        i = (i + 1) % currentImages.length;
     }
     setInterval(toggle, 200);
-
 }
