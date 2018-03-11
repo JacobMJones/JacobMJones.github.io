@@ -10,7 +10,7 @@ var State = {
 };
 
 var state = State.Idling;
-var happiness, loneliness, wakefulness;
+var happiness, loneliness, wakefulness, hunger;
 
 
 $(document).ready(function () {
@@ -18,6 +18,7 @@ $(document).ready(function () {
     happiness = 50;
     loneliness = 50;
     wakefulness = 50;
+    hunger = 0;
     Update();
 });
 
@@ -29,39 +30,43 @@ function Update() {
     setInterval(stateToggle, 2000);
 
     function variableToggle() {
-        
-        console.log(happiness);
+
         updateDevInformation();
         switch (state) {
-                
+
             case State.Idling:
                 currentImages = idleImages;
                 happiness = happiness - .5;
                 loneliness = loneliness - .5;
                 wakefulness = wakefulness - .5;
+                hunger = hunger + .5;
                 break;
-                
+
             case State.Sleeping:
                 currentImages = sleepingImages;
                 happiness = happiness + .5;
                 wakefulness = wakefulness - 1;
-                loneliness = loneliness  + 1;
+                loneliness = loneliness + 1;
+                hunger = hunger + .5;
                 break;
-                
+
             case State.Happy:
                 currentImages = happyImages;
-               loneliness = loneliness  + 1;
-                wakefulness = wakefulness -.5;
-                happiness = happiness - .5;
-                break;
-                
-            case State.Sad:
-                currentImages = sadImages;
-                loneliness = loneliness  + 1;
+                loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
                 happiness = happiness - .5;
+                hunger = hunger + .5;
+                break;
+
+            case State.Sad:
+                currentImages = sadImages;
+                loneliness = loneliness + 1;
+                wakefulness = wakefulness - .5;
+                happiness = happiness - .5;
+                hunger = hunger + .5;
                 break;
         }
+        clampEverything();
     }
     setInterval(variableToggle, 200);
 }
@@ -71,15 +76,38 @@ function updateDevInformation() {
     document.getElementById("wakefulnessInfo").innerHTML = "Wakefulness: " + wakefulness;
     document.getElementById("happinessInfo").innerHTML = "Happiness: " + happiness;
     document.getElementById("lonelinessInfo").innerHTML = "Loneliness: " + loneliness;
-    document.getElementById("stateInfo").innerHTML = "State: " + state.toString();
+    document.getElementById("hungerInfo").innerHTML = "Hunger: " + hunger;
+    document.getElementById("stateInfo").innerHTML = "State: " + state;
 }
 
 function changeState() {
-    if (happiness > 0) {
+
+    if (happiness >= 50) {
         state = State.Happy;
+    } else if (happiness < 50) {
+        state = State.Sad;
     }
-    else if (happiness<0)
-        {
-            state = State.Sad;
-        }
+
+}
+
+function giveFood() {
+    console.log('food given');
+    hunger = hunger - 25;
+    happiness = happiness + 5;
+
+    clampEverything();
+}
+
+function giveHappy() {
+    console.log('happy given');
+    happiness = happiness + 25;
+    clampEverything();
+}
+
+function clampEverything() {
+    happiness = happiness > 100 ? 100 : (happiness < 0 ? 0 : happiness);
+    loneliness = loneliness > 100 ? 100 : (loneliness < 0 ? 0 : loneliness);
+    wakefulness = wakefulness > 100 ? 100 : (wakefulness < 0 ? 0: wakefulness);
+    hunger = hunger > 100 ? 100 : (hunger < 0 ? 0 : hunger);
+
 }
