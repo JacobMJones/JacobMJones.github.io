@@ -23,8 +23,6 @@ $(document).ready(function () {
 
 //update is called once, the function inside act timed updates
 function Update() {
-
-
     function stateToggle() {
         changeState();
     }
@@ -49,6 +47,10 @@ function Update() {
                 currentImages = happyImages;
                 tiredness = tiredness + 1;
                 break;
+            case State.Sad:
+                currentImages = sadImages;
+                tiredness = tiredness + 1;
+                break;
 
         }
     }
@@ -63,5 +65,7 @@ function updateDevInformation() {
 }
 
 function changeState() {
-    console.log("change state called");
+    if (sadness > 50) {
+
+    }
 }
