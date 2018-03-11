@@ -10,14 +10,14 @@ var State = {
 };
 
 var state = State.Idling;
-var sadness, loneliness, tiredness;
+var happiness, loneliness, wakefulness;
 
 
 $(document).ready(function () {
 
-    sadness = 50;
+    happiness = 50;
     loneliness = 50;
-    tiredness = 50;
+    wakefulness = 50;
     Update();
 });
 
@@ -29,29 +29,38 @@ function Update() {
     setInterval(stateToggle, 2000);
 
     function variableToggle() {
-        console.log(sadness);
+        
+        console.log(happiness);
         updateDevInformation();
         switch (state) {
+                
             case State.Idling:
                 currentImages = idleImages;
-                sadness = sadness - .5;
+                happiness = happiness - .5;
                 loneliness = loneliness - .5;
-                tiredness = tiredness - .5;
+                wakefulness = wakefulness - .5;
                 break;
+                
             case State.Sleeping:
                 currentImages = sleepingImages;
-                sadness = sadness + .5;
-                tiredness = tiredness - 1;
+                happiness = happiness + .5;
+                wakefulness = wakefulness - 1;
+                loneliness = loneliness  + 1;
                 break;
+                
             case State.Happy:
                 currentImages = happyImages;
-                tiredness = tiredness + 1;
+               loneliness = loneliness  + 1;
+                wakefulness = wakefulness -.5;
+                happiness = happiness - .5;
                 break;
+                
             case State.Sad:
                 currentImages = sadImages;
-                tiredness = tiredness + 1;
+                loneliness = loneliness  + 1;
+                wakefulness = wakefulness - .5;
+                happiness = happiness - .5;
                 break;
-
         }
     }
     setInterval(variableToggle, 200);
@@ -59,13 +68,18 @@ function Update() {
 
 
 function updateDevInformation() {
-    document.getElementById("tirednessInfo").innerHTML = "Tiredness: " + tiredness;
-    document.getElementById("sadnessInfo").innerHTML = "Sadness: " + sadness;
+    document.getElementById("wakefulnessInfo").innerHTML = "Wakefulness: " + wakefulness;
+    document.getElementById("happinessInfo").innerHTML = "Happiness: " + happiness;
     document.getElementById("lonelinessInfo").innerHTML = "Loneliness: " + loneliness;
+    document.getElementById("stateInfo").innerHTML = "State: " + state.toString();
 }
 
 function changeState() {
-    if (sadness > 50) {
-
+    if (happiness > 0) {
+        state = State.Happy;
     }
+    else if (happiness<0)
+        {
+            state = State.Sad;
+        }
 }
