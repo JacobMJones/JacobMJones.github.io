@@ -16,6 +16,7 @@ function Happy() {
 function Idle() {
     currentImages = idleImages;
 }
+
 function Angry() {
     currentImages = angryImages;
 }
