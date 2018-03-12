@@ -23,7 +23,7 @@ $(document).ready(function () {
 //update is called once, the function inside act timed updates
 function Update() {
     function stateToggle() {
-        changeState();
+        //changeState();
     }
     setInterval(stateToggle, 2000);
 

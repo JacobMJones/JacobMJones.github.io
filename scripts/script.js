@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 var imgForCanvas = new Image();
-
+imgForCanvas.class = "w3-image";
 var happyImages = ["images/happy1.png", "images/happy2.png", "images/happy3.png", "images/happy4.png", "images/happy5.png", "images/happy6.png"];
 
 var idleImages = ["images/idle1.png", "images/idle2.png", "images/idle3.png", "images/idle4.png", "images/idle5.png", "images/idle6.png", "images/idle7.png", "images/idle8.png",  "images/idle9.png"];
@@ -29,8 +29,11 @@ function Animate() {
     function toggle() {
         imgForCanvas.src = currentImages[i];
         imgForCanvas.onload = function () {
-            ctx.drawImage(imgForCanvas, 0, 0, imgForCanvas.width, imgForCanvas.height,
-                0, 0, canvasForAnimation.width, canvasForAnimation.height);
+            
+          ctx.drawImage(imgForCanvas, 0, 0, imgForCanvas.width, imgForCanvas.height,
+              0, 0, canvasForAnimation.width, canvasForAnimation.height)
+          
+            ;
         }
         i = (i + 1) % currentImages.length;
     }
