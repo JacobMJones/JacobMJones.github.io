@@ -41,7 +41,8 @@ function Update() {
                 break;
 
             case State.Sleeping:
-                currentImages = sleepingImages;
+                currentImages = idleImages;
+                //currentImages = sleepingImages;
                 happiness = happiness + .5;
                 wakefulness = wakefulness - 1;
                 loneliness = loneliness + 1;
@@ -49,7 +50,8 @@ function Update() {
                 break;
 
             case State.Happy:
-                currentImages = happyImages;
+                 currentImages = idleImages;
+                //currentImages = happyImages;
                 loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
                 happiness = happiness - .5;
@@ -57,7 +59,8 @@ function Update() {
                 break;
 
             case State.Sad:
-                currentImages = sadImages;
+                 currentImages = idleImages;
+               // currentImages = sadImages;
                 loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
                 happiness = happiness - .5;
@@ -65,7 +68,8 @@ function Update() {
                 break;
                 
             case State.Hungry:
-                currentImages = hungryImages;
+                 currentImages = idleImages;
+                //currentImages = hungryImages;
                 loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
                 happiness = happiness - .5;
