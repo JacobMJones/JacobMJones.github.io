@@ -12,7 +12,9 @@ var angryImages = ["images/angry1.png"];
 
 var sleepingImages = ["images/sleeping1.png"];
 
-var sadImages = ["images/sad1.png"]
+var sadImages = ["images/sad1.png"];
+
+var hungryImages = ["images/hungry1.png"];
 
 
 var currentImages = idleImages;

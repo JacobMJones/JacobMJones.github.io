@@ -8,13 +8,11 @@ var State = {
     Lonely: 7,
     Angry: 8
 };
-
 var state = State.Idling;
 var happiness, loneliness, wakefulness, hunger;
 
 
 $(document).ready(function () {
-
     happiness = 50;
     loneliness = 50;
     wakefulness = 50;
@@ -65,19 +63,18 @@ function Update() {
                 happiness = happiness - .5;
                 hunger = hunger + .5;
                 break;
+                
+            case State.Hungry:
+                currentImages = hungryImages;
+                loneliness = loneliness + 1;
+                wakefulness = wakefulness - .5;
+                happiness = happiness - .5;
+                hunger = hunger + .5;
+                break;
         }
         clampEverything();
     }
     setInterval(variableToggle, 200);
-}
-
-
-function updateDevInformation() {
-    document.getElementById("wakefulnessInfo").innerHTML = "Wakefulness: " + wakefulness;
-    document.getElementById("happinessInfo").innerHTML = "Happiness: " + happiness;
-    document.getElementById("lonelinessInfo").innerHTML = "Loneliness: " + loneliness;
-    document.getElementById("hungerInfo").innerHTML = "Hunger: " + hunger;
-    document.getElementById("stateInfo").innerHTML = "State: " + state;
 }
 
 function changeState() {
@@ -105,7 +102,7 @@ function changeState() {
     }
 
     var randomIndex = Math.floor(Math.random() * candidateState.length);
-console.log(candidateState.length);
+    console.log(candidateState.length);
     futureState = candidateState[randomIndex];
     switch (futureState) {
         case "happy":
@@ -139,6 +136,14 @@ function giveHappy() {
     console.log('happy given');
     happiness = happiness + 25;
     clampEverything();
+}
+
+function updateDevInformation() {
+    document.getElementById("wakefulnessInfo").innerHTML = "Wakefulness: " + wakefulness;
+    document.getElementById("happinessInfo").innerHTML = "Happiness: " + happiness;
+    document.getElementById("lonelinessInfo").innerHTML = "Loneliness: " + loneliness;
+    document.getElementById("hungerInfo").innerHTML = "Hunger: " + hunger;
+    document.getElementById("stateInfo").innerHTML = "State: " + state;
 }
 
 function clampEverything() {
