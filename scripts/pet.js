@@ -82,11 +82,48 @@ function updateDevInformation() {
 
 function changeState() {
 
+    //how to deal with multiple candidates
+    var candidateState = [];
+
+    candidateState.push("idle");
+
     if (happiness >= 50) {
-        state = State.Happy;
+        candidateState.push("happy");
     } else if (happiness < 50) {
-        state = State.Sad;
+        console.log("sad should be added");
+        candidateState.push("sad");
     }
+
+    if (hunger >= 50) {
+        candidateState.push("hungry");
+    }
+    if (loneliness >= 50) {
+        candidateState.push("lonely");
+    }
+    if (wakefulness < 10) {
+        candidateState.push("sleeping");
+    }
+
+    var randomIndex = Math.floor(Math.random() * candidateState.length);
+console.log(candidateState.length);
+    futureState = candidateState[randomIndex];
+    switch (futureState) {
+        case "happy":
+            state = State.Happy;
+            break;
+        case "hungry":
+            state = State.Hungry;
+            break;
+        case "sleeping":
+            state = State.Sleeping;
+            break;
+        case "lonely":
+            state = State.Lonely;
+        case "sad":
+            state = State.Sad;
+
+    }
+
 
 }
 
@@ -107,7 +144,6 @@ function giveHappy() {
 function clampEverything() {
     happiness = happiness > 100 ? 100 : (happiness < 0 ? 0 : happiness);
     loneliness = loneliness > 100 ? 100 : (loneliness < 0 ? 0 : loneliness);
-    wakefulness = wakefulness > 100 ? 100 : (wakefulness < 0 ? 0: wakefulness);
+    wakefulness = wakefulness > 100 ? 100 : (wakefulness < 0 ? 0 : wakefulness);
     hunger = hunger > 100 ? 100 : (hunger < 0 ? 0 : hunger);
-
 }
