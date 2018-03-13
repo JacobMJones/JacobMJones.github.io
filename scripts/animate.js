@@ -23,11 +23,11 @@ function animate() {
         }
 
     }
-    setInterval(toggleImages, 150);
+    setInterval(toggleImages, 100);
 }
 function pickNewAnimation()
 {
-  var randomIndex = Math.floor(Math.random() * 8);
+  var randomIndex = Math.floor(Math.random() * 5);
     console.log(randomIndex);
     if(randomIndex == 1)
         {
