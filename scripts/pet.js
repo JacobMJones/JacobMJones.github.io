@@ -24,6 +24,7 @@ $(document).ready(function () {
 
 //update is called once, the function inside act timed updates
 function Update() {
+    /*
     function stateToggle() {       
         //changeState();
     }
@@ -41,6 +42,7 @@ function Update() {
                     clipIndex == 1;
                     pickIdleAnimation();
                 }
+                Animate();
                 happiness = happiness - .5;
                 loneliness = loneliness - .5;
                 wakefulness = wakefulness - .5;
@@ -87,19 +89,10 @@ function Update() {
          console.log("in the state"  + state);
     }
     setInterval(variableToggle, 100);
-
-}
-
-function pickIdleAnimation() {
+*/
    
-    clipIndex = 0;
-    let rndNum = Math.floor((Math.random() * 10));
-    if (rndNum == 1) {
-        currentImages = idleBlinkImages;
-    } else {
-        currentImages = idleImages;
-    }
 }
+
 
 function changeState() {
 
