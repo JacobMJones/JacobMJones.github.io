@@ -6,11 +6,9 @@ var imgForCanvas = new Image();
 
 var happyImages = ["images/happy1.png", "images/happy2.png", "images/happy3.png", "images/happy4.png", "images/happy5.png", "images/happy6.png"];
 
-var idleImages = ["images/idle1.png", "images/idle2.png", "images/idle3.png", "images/idle4.png", "images/idle5.png", "images/idle6.png",
+var idleImages = ["images/idle1.png","images/idle1.png","images/idle1.png","images/idle1.png","images/idle1.png","images/idle1.png","images/idle1.png","images/idle1.png"];
 
-"images/idle7.png", "images/idle8.png",  "images/idle9.png",  "images/idle10.png",  "images/idle11.png",
-
-"images/idle12.png", "images/idle13.png",  "images/idle14.png",  "images/idle15.png",  "images/idle16.png"];
+var idleBlinkImages = ["images/idle1.png","images/idle1.png","images/idle1.png","images/blink1.png","images/blink2.png","images/blink3.png","images/blink2.png","images/blink1.png"];
 
 var angryImages = ["images/angry1.png"];
 
@@ -47,10 +45,14 @@ function Animate() {
     var i = 0;
 
     function toggle() {
-        console.log("toggle called");
         document.getElementById("animationImage").src = currentImages[i];
         i = (i + 1) % currentImages.length;
+       console.log(i + " i value");
+        if(i==7)
+            {
+                pickIdleAnimation();
+            }
     }
-    setInterval(toggle, 150);
+    setInterval(toggle, 100);
 
 }

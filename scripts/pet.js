@@ -8,32 +8,39 @@ var State = {
     Lonely: 7,
     Angry: 8
 };
-var state = State.Idling;
+var state = "idling";
 var happiness, loneliness, wakefulness, hunger;
-
+var clipIndex;
 
 $(document).ready(function () {
     happiness = 50;
     loneliness = 50;
     wakefulness = 50;
     hunger = 0;
-    Update();
+
+    clipIndex = 0;
+   // Update();
 });
 
 //update is called once, the function inside act timed updates
 function Update() {
-    function stateToggle() {
+    function stateToggle() {       
         //changeState();
     }
     setInterval(stateToggle, 2000);
 
     function variableToggle() {
-
+        clipIndex = clipIndex + 1;
         updateDevInformation();
-        switch (state) {
 
-            case State.Idling:
-                currentImages = idleImages;
+        switch (state) {        
+            case "idling":
+                //currentImages = idleImages;
+                if (clipIndex >
+                    8) {
+                    clipIndex == 1;
+                    pickIdleAnimation();
+                }
                 happiness = happiness - .5;
                 loneliness = loneliness - .5;
                 wakefulness = wakefulness - .5;
@@ -41,7 +48,7 @@ function Update() {
                 break;
 
             case State.Sleeping:
-                currentImages = idleImages;
+                //  currentImages = idleImages;
                 //currentImages = sleepingImages;
                 happiness = happiness + .5;
                 wakefulness = wakefulness - 1;
@@ -50,7 +57,7 @@ function Update() {
                 break;
 
             case State.Happy:
-                 currentImages = idleImages;
+                // currentImages = idleImages;
                 //currentImages = happyImages;
                 loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
@@ -59,16 +66,16 @@ function Update() {
                 break;
 
             case State.Sad:
-                 currentImages = idleImages;
-               // currentImages = sadImages;
+                //  currentImages = idleImages;
+                // currentImages = sadImages;
                 loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
                 happiness = happiness - .5;
                 hunger = hunger + .5;
                 break;
-                
+
             case State.Hungry:
-                 currentImages = idleImages;
+                //    currentImages = idleImages;
                 //currentImages = hungryImages;
                 loneliness = loneliness + 1;
                 wakefulness = wakefulness - .5;
@@ -77,15 +84,29 @@ function Update() {
                 break;
         }
         clampEverything();
+         console.log("in the state"  + state);
     }
-    setInterval(variableToggle, 200);
+    setInterval(variableToggle, 100);
+
+}
+
+function pickIdleAnimation() {
+   
+    clipIndex = 0;
+    let rndNum = Math.floor((Math.random() * 10));
+    if (rndNum == 1) {
+        currentImages = idleBlinkImages;
+    } else {
+        currentImages = idleImages;
+    }
 }
 
 function changeState() {
 
-    //how to deal with multiple candidates
-    var candidateState = [];
 
+    //if (State.Idle)
+
+    /*
     candidateState.push("idle");
 
     if (happiness >= 50) {
@@ -124,7 +145,7 @@ function changeState() {
             state = State.Sad;
 
     }
-
+*/
 
 }
 
