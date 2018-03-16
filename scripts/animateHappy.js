@@ -4,7 +4,7 @@ var happyImages = ["images/happy1.png", "images/happy1.png",  "images/happy1.png
 
 
 
-var currentImages = idleImages;
+
 $(document).ready(function () {
 
 });
