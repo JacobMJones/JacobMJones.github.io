@@ -20,20 +20,13 @@ function init() {
 
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-    addEventListener("touchend", touchDown, false);
+    
 
 
 
 
 }
 
-function touchDown(e) {
-    //ctx.fillRect(0, 0, e.pageX, e.pageY);
-    x = e.touches[0].clientX;
-  y = e.touches[0].clientY;
-    alert('x is' + x);
-    clickOrPress(x,y);
-}
 
 function generateBoardCoords() {
     var xPosition, yPosition;
@@ -429,7 +422,7 @@ $(document).click(function (e) {
 
 
 function clickOrPress(x,y) {
-    alert("x: " + x = " y: " + y);
+   
     var rect = canvas.getBoundingClientRect();
     var clickXOnCanvas = x - rect.left;
     var clickYOnCanvas = y - rect.top;
