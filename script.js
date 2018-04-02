@@ -28,9 +28,10 @@ function init() {
 }
 
 function touchDown(e) {
-    ctx.fillRect(0, 0, e.pageX, e.pageY);
+    //ctx.fillRect(0, 0, e.pageX, e.pageY);
     x = e.touches[0].clientX;
   y = e.touches[0].clientY;
+    alert('x is' + x);
     clickOrPress(x,y);
 }
 
