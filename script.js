@@ -21,7 +21,7 @@ function init() {
     ctx = canvas.getContext("2d");
 
  
-canvas.addEventListener( 'touchstart', onTouchStart, false);
+canvas.addEventListener( 'touchstart', clickOrPress, false);
 
 
 }
@@ -418,4 +418,7 @@ $(document).click(function (e) {
     addSoldiersInGame();
 });
 
+function clickOrPress(){
+    console.log("clickorpress");
+}
 
