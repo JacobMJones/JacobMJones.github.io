@@ -353,11 +353,8 @@ function pointInCircle(x, y, cx, cy, radius) {
     return distancesquared <= radius * radius;
 }
 
-$(canvas).bind('touchend', function (e) {
-    //e.preventDefault();
-   let x = clientX = e.touches[0].clientX;
-   let y = clientY = e.touches[0].clientY;
-    clickOrPress(x,y);
+$("div").mousedown(function(e){
+    alert(e.offsetX + " " + e.offsetY);
 });
 $(document).ready(function () {
     init();
