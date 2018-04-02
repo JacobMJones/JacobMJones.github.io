@@ -20,6 +20,7 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
     canvas.addEventListener('touchstart', function (e) {
+        clearCanvas(ctx, canvas);
             clickOrPress(e);
         },false);
         
