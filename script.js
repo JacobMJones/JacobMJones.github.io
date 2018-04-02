@@ -22,7 +22,7 @@ function init() {
     ctx = canvas.getContext("2d");
 
     canvas.addEventListener('touchmove', function (e) {
-        clickOrPress(e);
+        clickOrPress(touch.pageX,touch.pageY);
         /*
     e.preventDefault();
     vartouch = e.touches[0];
@@ -401,7 +401,9 @@ $(document).ready(function () {
 
 });
 $(document).click(function (e) {
-    clickOrPress(e);
+    x = e.clientX;
+    y = e.clientY;
+    clickOrPress(x,y);
     /*
         var rect = canvas.getBoundingClientRect();
         var clickXOnCanvas = e.clientX - rect.left;
@@ -429,11 +431,11 @@ $(document).click(function (e) {
 });
 
 
-function clickOrPress(e) {
+function clickOrPress(x,y) {
     alert("clickorpress");
     var rect = canvas.getBoundingClientRect();
-    var clickXOnCanvas = e.clientX - rect.left;
-    var clickYOnCanvas = e.clientY - rect.top;
+    var clickXOnCanvas = x - rect.left;
+    var clickYOnCanvas = y - rect.top;
 
 
 
