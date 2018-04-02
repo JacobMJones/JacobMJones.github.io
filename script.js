@@ -13,40 +13,15 @@ var owner;
 var tileIndex = 0;
 var amountOfSeeds = Math.floor(Math.random() * 10 + 2);
 var gFactor = Math.floor(Math.random() * 10 + 6);
- var jQueryDocument = $(document);
+
 function init() {
 
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
     
     
-
-
- 
-    if ("ontouchstart" in window) {
-        jQueryDocument.on("touchstart", onTouchEvent);
-        jQueryDocument.on("touchmove", onTouchEvent);
-        jQueryDocument.on("touchend", onTouchEvent);
-    } else {
-        jQueryDocument.on("mousedown", onMouseEvent);
-        jQueryDocument.on("mouseup", onMouseEvent);
-        jQueryDocument.on("mousemove", onMouseEvent);
-    }
 }
- var onMouseEvent = function(event) {
-        var type;
- 
-        switch (event.type) {
-            case "mousedown": type = TouchMouseEvent.DOWN; break;
-            case "mouseup":   type = TouchMouseEvent.UP;   break;
-            case "mousemove": type = TouchMouseEvent.MOVE; break;
-            default:
-                return;
-        }
- 
-        var touchMouseEvent = normalizeEvent(type, event, event.pageX, event.pageY);
-        $(event.target).trigger(touchMouseEvent);
-    }
+
 
 function generateBoardCoords() {
     var xPosition, yPosition;
@@ -379,7 +354,7 @@ function pointInCircle(x, y, cx, cy, radius) {
     var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
     return distancesquared <= radius * radius;
 }
-/*
+
 $("canvas").mousedown(function(e){
    
     
@@ -389,7 +364,6 @@ $("canvas").mousedown(function(e){
     clickOrPress(x,y);
     
 });
-*/
 $(document).ready(function () {
     init();
     generateBoardCoords();
