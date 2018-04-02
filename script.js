@@ -29,7 +29,9 @@ function init() {
 
 function touchDown(e) {
     ctx.fillRect(0, 0, e.pageX, e.pageY);
-    clickOrPress(e);
+    x = e.touches[0].clientX;
+  y = e.touches[0].clientY;
+    clickOrPress(x,y);
 }
 
 function generateBoardCoords() {
