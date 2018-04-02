@@ -19,18 +19,16 @@ var gFactor = Math.floor(Math.random() * 10 + 6);
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-
-
     canvas.addEventListener('touchstart', clickOrPress, false);
 
 
 }
-
+/*
 function onTouchStart(e) {
     ctx.fillRect(0, 0, 300, 300);
 
 }
-
+*/
 function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
