@@ -377,6 +377,7 @@ $(document).click(function (e) {
     x = e.clientX;
     y = e.clientY;
     alert(x + " " + y);
+    clickOrPress(x,y);
     /*
         var rect = canvas.getBoundingClientRect();
         var clickXOnCanvas = e.clientX - rect.left;
