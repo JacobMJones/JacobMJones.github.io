@@ -21,7 +21,7 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-    document.addEventListener('touchmove', function (e) {
+    canvas.addEventListener('touchmove', function (e) {
         clickOrPress(e);
         /*
     e.preventDefault();
