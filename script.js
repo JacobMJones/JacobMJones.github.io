@@ -22,9 +22,11 @@ function init() {
     ctx = canvas.getContext("2d");
     
    document.addEventListener('touchmove', function(e) {
+       clickOrPress(e);
+       /*
     e.preventDefault();
-    var touch = e.touches[0];
-    alert("DOCUMENT" + touch.pageX + " - " + touch.pageY);
+    vartouch = e.touches[0];
+    alert("DOCUMENT" + touch.pageX + " - " + touch.pageY);*/
 }, false);
         
 
@@ -428,7 +430,7 @@ function init() {
 
 
     function clickOrPress(e) {
-        console.log("clickorpress");
+        alert("clickorpress");
         var rect = canvas.getBoundingClientRect();
         var clickXOnCanvas = e.clientX - rect.left;
         var clickYOnCanvas = e.clientY - rect.top;
