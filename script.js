@@ -1,7 +1,5 @@
 var canvas;
-
 var ctx;
-
 var boardCoords = [];
 var tiles = [];
 var landTiles = [];
@@ -20,11 +18,6 @@ function init() {
 
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-    
-
-
-
-
 }
 
 
@@ -47,17 +40,12 @@ function generateBoardCoords() {
 function setupTiles() {
 
     p = true;
-
     for (i = 0; i < boardCoords.length; i++) {
         x = boardCoords[i].xPos;
         y = boardCoords[i].yPos;
         var mapBorder = false;
 
-        //water or land
-
-
-
-        //makes a border maybe do this after the map is made
+    
 
         if (x == 60 || x == (mapX - 1) * 100 + 60 || y == 60 || y == (mapY - 1) * 100 + 60) {
             mapBorder = true;
@@ -340,26 +328,16 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
 function addSoldiersFirstTime() {
     for (i = 0; i < tiles.length; i++) {
         if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
-
-
             drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
-
-
         }
-
     }
 }
 
 function addSoldiersInGame() {
     for (i = 0; i < tiles.length; i++) {
         if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
-
-
             drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
-
-
         }
-
     }
 }
 
