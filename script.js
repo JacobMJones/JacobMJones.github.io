@@ -17,7 +17,7 @@ var amountOfSeeds = Math.floor(Math.random() * 10 + 2);
 var gFactor = Math.floor(Math.random() * 10 + 6);
 
 function init() {
-    alert("alerts work");
+    
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
     
