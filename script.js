@@ -20,14 +20,7 @@ function init() {
 
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-/*
-    canvas.addEventListener('ontouchend', function (e) {
-        clickOrPress(touch.pageX,touch.pageY);
-        
-    e.preventDefault();
-    vartouch = e.touches[0];
-    alert("DOCUMENT" + touch.pageX + " - " + touch.pageY);*/
-    }, false);
+    addEventListener("touchstart", touchDown, false);
 
 
 
@@ -385,10 +378,7 @@ function pointInCircle(x, y, cx, cy, radius) {
     var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
     return distancesquared <= radius * radius;
 }
-$(canvas).trigger('touchend', function(e){
-    
-alert("touchend asfsafsd");    
-});
+
 
 $(document).ready(function () {
     init();
@@ -434,7 +424,7 @@ $(document).click(function (e) {
       addSoldiersInGame();*/
 });
 
-ontouch
+
 function clickOrPress(x,y) {
     alert("clickorpress");
     var rect = canvas.getBoundingClientRect();
