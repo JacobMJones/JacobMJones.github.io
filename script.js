@@ -6,22 +6,18 @@ var landTiles = [];
 var waterTiles = [];
 var landMasses = [];
 var tileInFocus;
-startSeed = Math.floor(Math.random() * tiles.length);
+//startSeed = Math.floor(Math.random() * tiles.length);
 var mapX = 20;
 var mapY = 20;
 var owner;
 var tileIndex = 0;
-var amountOfSeeds = Math.floor(Math.random() * 10 + 2);
-var gFactor = Math.floor(Math.random() * 10 + 6);
+var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
+var gFactor = Math.floor(Math.random() * 6 + 3);
 
 function init() {
-
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-    
-    
 }
-
 
 function generateBoardCoords() {
     var xPosition, yPosition;
@@ -40,14 +36,13 @@ function generateBoardCoords() {
 }
 
 function setupTiles() {
-
     p = true;
     for (i = 0; i < boardCoords.length; i++) {
         x = boardCoords[i].xPos;
         y = boardCoords[i].yPos;
         var mapBorder = false;
 
-    
+
 
         if (x == 60 || x == (mapX - 1) * 100 + 60 || y == 60 || y == (mapY - 1) * 100 + 60) {
             mapBorder = true;
@@ -307,13 +302,15 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
         ctx.shadowOffsetX = 10;
         ctx.shadowOffsetY = 10;
 
-    } else {
-        ctx.beginPath();
-        ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
-        ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-    }
+    } 
+    else if (!isLand) {       
+            ctx.beginPath();
+            ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+        }
+   
     if (clickedOn) {
         ctx.arc(x, y, circleSize + 5, 0, Math.PI * 2, true);
         ctx.shadowBlur = 0;
@@ -355,14 +352,14 @@ function pointInCircle(x, y, cx, cy, radius) {
     return distancesquared <= radius * radius;
 }
 
-$("canvas").mousedown(function(e){
-   
-    
+$("canvas").mousedown(function (e) {
+
+
     x = e.clientX;
     y = e.clientY;
- 
-    clickOrPress(x,y);
-    
+
+    clickOrPress(x, y);
+
 });
 $(document).ready(function () {
     init();
@@ -373,52 +370,16 @@ $(document).ready(function () {
     putWaterAndLandIntoLists();
     removeSingleTiles();
     setNations();
-
     drawBoard();
     addSoldiersFirstTime();
 
 });
 
-/*
-$(document).click(function (e) {
-    x = e.clientX;
-    y = e.clientY;
-    alert(x + " " + y);
-    clickOrPress(x,y);
-    /*
-        var rect = canvas.getBoundingClientRect();
-        var clickXOnCanvas = e.clientX - rect.left;
-        var clickYOnCanvas = e.clientY - rect.top;
+function clickOrPress(x, y) {
 
-
-
-        for (i = 0; i < tiles.length; i++) {
-            tileX = tiles[i].xPos - rect.left;
-            tileY = tiles[i].yPos - rect.top;
-
-            var point = pointInCircle(tiles[i].xPos, tiles[i].yPos, clickXOnCanvas, clickYOnCanvas, 50);
-            if (point) {
-                console.log(tiles[i]);
-
-                tiles[i].inFocus = true;
-               
-            }
-            else{
-                tiles[i].inFocus = false;
-            }
-        }
-        drawBoard();
-      addSoldiersInGame();
-});
-*/
-
-function clickOrPress(x,y) {
-   
     var rect = canvas.getBoundingClientRect();
     var clickXOnCanvas = x - rect.left;
     var clickYOnCanvas = y - rect.top;
-
-
 
     for (i = 0; i < tiles.length; i++) {
         tileX = tiles[i].xPos - rect.left;
@@ -427,8 +388,11 @@ function clickOrPress(x,y) {
         var point = pointInCircle(tiles[i].xPos, tiles[i].yPos, clickXOnCanvas, clickYOnCanvas, 50);
         if (point) {
             console.log(tiles[i]);
-
-            tiles[i].inFocus = true;
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
 
         } else {
             tiles[i].inFocus = false;
