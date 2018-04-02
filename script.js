@@ -20,8 +20,15 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-}
+ 
+canvas.addEventListener( 'touchstart', onTouchStart, false);
 
+
+}
+function onTouchStart(e) {
+ ctx.fillRect(0,0,300,300);   
+    
+}
 function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
@@ -410,3 +417,5 @@ $(document).click(function (e) {
     drawBoard();
     addSoldiersInGame();
 });
+
+
