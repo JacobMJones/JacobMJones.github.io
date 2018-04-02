@@ -6,9 +6,8 @@ var landTiles = [];
 var waterTiles = [];
 var landMasses = [];
 var tileInFocus;
-//startSeed = Math.floor(Math.random() * tiles.length);
-var mapX = 20;
-var mapY = 20;
+var mapX = 19;
+var mapY = 19;
 var owner;
 var tileIndex = 0;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
@@ -139,7 +138,6 @@ function setNations() {
 function setUpLandMassArrays() {
     for (i = 0; i < amountOfSeeds; i++) {
         window["LandMassArray" + i] = new Array();
-
     }
 }
 
@@ -302,15 +300,14 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
         ctx.shadowOffsetX = 10;
         ctx.shadowOffsetY = 10;
 
-    } 
-    else if (!isLand) {       
-            ctx.beginPath();
-            ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
-            ctx.shadowBlur = 0;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 0;
-        }
-   
+    } else if (!isLand) {
+        ctx.beginPath();
+        ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+    }
+
     if (clickedOn) {
         ctx.arc(x, y, circleSize + 5, 0, Math.PI * 2, true);
         ctx.shadowBlur = 0;
@@ -324,18 +321,22 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
     ctx.closePath();
 }
 
-function addSoldiersFirstTime() {
-    for (i = 0; i < tiles.length; i++) {
-        if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
-            drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
-        }
-    }
-}
 
-function addSoldiersInGame() {
-    for (i = 0; i < tiles.length; i++) {
-        if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
-            drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
+
+function addSoldiers() {
+    for (i = 0; i < landTiles.length; i++) {
+        if (landTiles[i].soldiers > 0) {
+
+            if (landTiles[i].player1) {
+                ctx.font = "50px bold Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText("5", landTiles[i].xPos - 15, landTiles[i].yPos + 15);
+            } else if (!landTiles[i].player1) {
+                ctx.fillStyle = "black";
+                ctx.font = "50px bold Arial";
+                ctx.fillText("5", landTiles[i].xPos - 15, landTiles[i].yPos + 15);
+            }
+
         }
     }
 }
@@ -371,7 +372,7 @@ $(document).ready(function () {
     removeSingleTiles();
     setNations();
     drawBoard();
-    addSoldiersFirstTime();
+    addSoldiers();
 
 });
 
@@ -399,5 +400,5 @@ function clickOrPress(x, y) {
         }
     }
     drawBoard();
-    addSoldiersInGame();
+    addSoldiers();
 }
