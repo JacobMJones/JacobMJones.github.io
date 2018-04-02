@@ -55,6 +55,7 @@ function setupTiles() {
 
         if (x == 60 || x == (mapX - 1) * 100 + 60 || y == 60 || y == (mapY - 1) * 100 + 60) {
             mapBorder = true;
+            soldiers = 0;
         } else {
             mapBorder = false;
         }
@@ -286,7 +287,6 @@ function drawBoard() {
 
 }
 
-
 function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
     ctx.beginPath();
     ctx.arc(x, y, circleSize, 0, Math.PI * 2, true);
@@ -324,18 +324,30 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand) {
     ctx.closePath();
 }
 
-function addSoldiers() {
+function addSoldiersFirstTime() {
     for (i = 0; i < tiles.length; i++) {
-        if (tiles[i].soldiers > 0) {
+        if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
 
         
                     drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
                    
                
         }
+    
     }
 }
+function addSoldiersInGame(){
+      for (i = 0; i < tiles.length; i++) {
+        if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
 
+        
+                    drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
+                   
+               
+        }
+    
+    }
+}
 function clearCanvas(context, canvas) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     var w = canvas.width;
@@ -359,7 +371,7 @@ $(document).ready(function () {
     setNations();
     
     drawBoard();
-    addSoldiers();
+    addSoldiersFirstTime();
     
 });
 $(document).click(function (e) {
@@ -387,4 +399,5 @@ $(document).click(function (e) {
         }
     }
     drawBoard();
+    addSoldiersInGame();
 });
