@@ -7,14 +7,14 @@ var tiles = [];
 var landTiles = [];
 var waterTiles = [];
 var landMasses = [];
-
- startSeed = Math.floor(Math.random() * tiles.length);
+var tileInFocus;
+startSeed = Math.floor(Math.random() * tiles.length);
 var mapX = 20;
 var mapY = 20;
 var owner;
 var tileIndex = 0;
-var amountOfSeeds = Math.floor(Math.random() * 10+2);
-var gFactor = Math.floor(Math.random() * 10+6);
+var amountOfSeeds = Math.floor(Math.random() * 10 + 2);
+var gFactor = Math.floor(Math.random() * 10 + 6);
 
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
@@ -75,7 +75,7 @@ function setupTiles() {
             tileColor: "#77cccc",
             alone: false,
             startSeed: false,
-       
+            inFocus: false
         };
 
         tiles.push(tile);
@@ -211,9 +211,9 @@ function growIsland(landIndex) {
                     tiles[i].partOf = partOf;
                     tiles[newSeedingTile].growthFactor = tiles[i].growthFactor;
                 }
-                
-    
-                
+
+
+
                 switch (o) {
                     case 0:
                         LandMassArray0.push(tiles[i]);
@@ -281,7 +281,7 @@ function drawBoard() {
     clearCanvas(ctx, canvas);
     for (i = 0; i < tiles.length; i++) {
 
-        drawTile(ctx, tiles[i].xPos, tiles[i].yPos, tiles[i].tileColor, 48, 5, tiles[i].tileID, tiles[i].land);
+        drawTile(ctx, tiles[i].xPos, tiles[i].yPos, tiles[i].tileColor, 48, 15, tiles[i].tileID, tiles[i].land, tiles[i].inFocus);
     }
 
 
@@ -297,28 +297,35 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
     ctx.closePath();
 }
 
-function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand) {
-    
+function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn) {
+
 
 
     if (isLand) {
         ctx.beginPath();
-        ctx.arc(x, y, circleSize, 0, Math.PI * 2, true);
-        ctx.lineWidth = lineWidth;
-       // ctx.stroke();
+        ctx.arc(x, y, circleSize-10, 0, Math.PI * 2, true);
+        
+        // ctx.stroke();
         ctx.shadowColor = "#8a8a8a";
         ctx.shadowBlur = 5;
         ctx.shadowOffsetX = 10;
         ctx.shadowOffsetY = 10;
-    }
-    else{
+        
+    } else {
         ctx.beginPath();
-        ctx.arc(x, y, circleSize-10, 0, Math.PI * 2, true);
+        ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
         ctx.shadowBlur = 0;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
     }
-
+    if (clickedOn) {
+        ctx.arc(x, y, circleSize+5, 0, Math.PI * 2, true);
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+        }
     ctx.fillStyle = color;
     ctx.fill();
     ctx.closePath();
@@ -328,26 +335,28 @@ function addSoldiersFirstTime() {
     for (i = 0; i < tiles.length; i++) {
         if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
 
-        
-                    drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
-                   
-               
+
+            drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
+
+
         }
-    
+
     }
 }
-function addSoldiersInGame(){
-      for (i = 0; i < tiles.length; i++) {
+
+function addSoldiersInGame() {
+    for (i = 0; i < tiles.length; i++) {
         if (tiles[i].soldiers > 0 && !tiles[i].mapBorder) {
 
-        
-                    drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
-                   
-               
+
+            drawSoldiers(ctx, tiles[i].xPos, tiles[i].yPos, '#ff1111', 5, 2);
+
+
         }
-    
+
     }
 }
+
 function clearCanvas(context, canvas) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     var w = canvas.width;
@@ -369,10 +378,10 @@ $(document).ready(function () {
     putWaterAndLandIntoLists();
     removeSingleTiles();
     setNations();
-    
+
     drawBoard();
     addSoldiersFirstTime();
-    
+
 });
 $(document).click(function (e) {
 
@@ -391,11 +400,11 @@ $(document).click(function (e) {
         if (point) {
             console.log(tiles[i]);
 
-            if (tiles[i].on) {
-                tiles[i].on = false;
-            } else {
-                tiles[i].on = true;
-            }
+            tiles[i].inFocus = true;
+           
+        }
+        else{
+            tiles[i].inFocus = false;
         }
     }
     drawBoard();
