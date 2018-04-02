@@ -353,7 +353,12 @@ function pointInCircle(x, y, cx, cy, radius) {
     return distancesquared <= radius * radius;
 }
 
-
+$(canvas).bind('touchend', function (e) {
+    e.preventDefault();
+   let x = clientX = e.touches[0].clientX;
+   let y = clientY = e.touches[0].clientY;
+    clickOrPress(x,y);
+});
 $(document).ready(function () {
     init();
     generateBoardCoords();
@@ -371,7 +376,7 @@ $(document).ready(function () {
 $(document).click(function (e) {
     x = e.clientX;
     y = e.clientY;
-    clickOrPress(x,y);
+    alert(x + " " + y);
     /*
         var rect = canvas.getBoundingClientRect();
         var clickXOnCanvas = e.clientX - rect.left;
