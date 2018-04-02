@@ -21,7 +21,7 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-    canvas.addEventListener('touchmove', function (e) {
+    canvas.addEventListener('ontouchend', function (e) {
         clickOrPress(touch.pageX,touch.pageY);
         /*
     e.preventDefault();
@@ -430,7 +430,7 @@ $(document).click(function (e) {
       addSoldiersInGame();*/
 });
 
-
+ontouch
 function clickOrPress(x,y) {
     alert("clickorpress");
     var rect = canvas.getBoundingClientRect();
