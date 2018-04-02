@@ -19,10 +19,11 @@ var gFactor = Math.floor(Math.random() * 10 + 6);
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-    canvas.addEventListener('touchstart', function (e) {
-        clearCanvas(ctx, canvas);
-            clickOrPress(e);
-        },false);
+   document.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    var touch = e.touches[0];
+    alert("DOCUMENT" + touch.pageX + " - " + touch.pageY);
+}, false);
         
 
 
