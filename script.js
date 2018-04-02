@@ -354,7 +354,7 @@ function pointInCircle(x, y, cx, cy, radius) {
 }
 
 $(canvas).bind('touchend', function (e) {
-    e.preventDefault();
+    //e.preventDefault();
    let x = clientX = e.touches[0].clientX;
    let y = clientY = e.touches[0].clientY;
     clickOrPress(x,y);
