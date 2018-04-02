@@ -20,15 +20,17 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
- 
-canvas.addEventListener( 'touchstart', clickOrPress, false);
+
+    canvas.addEventListener('touchstart', clickOrPress, false);
 
 
 }
+
 function onTouchStart(e) {
- ctx.fillRect(0,0,300,300);   
-    
+    ctx.fillRect(0, 0, 300, 300);
+
 }
+
 function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
@@ -310,14 +312,14 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
 
     if (isLand) {
         ctx.beginPath();
-        ctx.arc(x, y, circleSize-10, 0, Math.PI * 2, true);
-        
+        ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
+
         // ctx.stroke();
         ctx.shadowColor = "#8a8a8a";
         ctx.shadowBlur = 5;
         ctx.shadowOffsetX = 10;
         ctx.shadowOffsetY = 10;
-        
+
     } else {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
@@ -326,13 +328,13 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
         ctx.shadowOffsetY = 0;
     }
     if (clickedOn) {
-        ctx.arc(x, y, circleSize+5, 0, Math.PI * 2, true);
+        ctx.arc(x, y, circleSize + 5, 0, Math.PI * 2, true);
         ctx.shadowBlur = 0;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
-            ctx.lineWidth = lineWidth;
-            ctx.stroke();
-        }
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+    }
     ctx.fillStyle = color;
     ctx.fill();
     ctx.closePath();
@@ -391,8 +393,36 @@ $(document).ready(function () {
 
 });
 $(document).click(function (e) {
+    clickOrPress(e);
+    /*
+        var rect = canvas.getBoundingClientRect();
+        var clickXOnCanvas = e.clientX - rect.left;
+        var clickYOnCanvas = e.clientY - rect.top;
 
 
+
+        for (i = 0; i < tiles.length; i++) {
+            tileX = tiles[i].xPos - rect.left;
+            tileY = tiles[i].yPos - rect.top;
+
+            var point = pointInCircle(tiles[i].xPos, tiles[i].yPos, clickXOnCanvas, clickYOnCanvas, 50);
+            if (point) {
+                console.log(tiles[i]);
+
+                tiles[i].inFocus = true;
+               
+            }
+            else{
+                tiles[i].inFocus = false;
+            }
+        }
+        drawBoard();
+      addSoldiersInGame();*/
+});
+
+
+function clickOrPress(e) {
+    console.log("clickorpress");
     var rect = canvas.getBoundingClientRect();
     var clickXOnCanvas = e.clientX - rect.left;
     var clickYOnCanvas = e.clientY - rect.top;
@@ -408,17 +438,11 @@ $(document).click(function (e) {
             console.log(tiles[i]);
 
             tiles[i].inFocus = true;
-           
-        }
-        else{
+
+        } else {
             tiles[i].inFocus = false;
         }
     }
     drawBoard();
     addSoldiersInGame();
-});
-
-function clickOrPress(){
-    console.log("clickorpress");
 }
-
