@@ -11,11 +11,15 @@ var mapY = 19;
 var owner;
 var tileIndex = 0;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
-var gFactor = Math.floor(Math.random() * 6 + 3);
+var gFactor = Math.floor(Math.random() * 6 + 6);
 var player1Turn;
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
+   canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+  
+    
 }
 
 function generateBoardCoords() {
