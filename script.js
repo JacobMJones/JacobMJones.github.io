@@ -12,7 +12,7 @@ var owner;
 var tileIndex = 0;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
 var gFactor = Math.floor(Math.random() * 6 + 3);
-
+var player1Turn;
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
@@ -334,8 +334,6 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
     ctx.closePath();
 }
 
-
-
 function addSoldiers() {
     for (i = 0; i < landTiles.length; i++) {
         if (landTiles[i].soldiers > 0) {
@@ -431,16 +429,12 @@ tileInFocus.mainFocus = false;
     }
 }
 
-/*
-var tilesAroundTile = [];
-for (i = 0; i < tiles.length; i++) {
-
-    var idRef = tiles[i].tileID + mapY - 1;
-    if (tiles[i].tileID == idRef) {
-        tiles[i].inFocus = true;
-    }
-}*/
-
+function placeSoldiers(){
+    
+}
+function attack(){
+    
+}
 
 function clearCanvas(context, canvas) {
     context.clearRect(0, 0, canvas.width, canvas.height);
