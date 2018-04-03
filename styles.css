@@ -1,15 +1,10 @@
+canvas {
+    margin: auto;
+    display: block;
 
+}
 .shadow {
    -moz-box-shadow:    inset 0 0 10px #000000;
    -webkit-box-shadow: inset 0 0 10px #000000;
    box-shadow:         inset 0 0 10px #000000;
-}
-
-#interfaceDiv{
-    float:right;
-}
-
-canvas {
-    width: 1000px;
-    height: 1000px;
 }
