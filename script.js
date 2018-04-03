@@ -449,8 +449,7 @@ function clearCanvas(context, canvas) {
     canvas.width = w;
     
      
-  context.fillStyle = 'rgba(0,255,0,1)';
-    context.fillRect(0,0,window.innerWidth,window.innerHeight);
+  
 }
 
 function pointInCircle(x, y, cx, cy, radius) {
