@@ -26,8 +26,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 100 + 60;
-            yPosition = d * 100 + 60;
+            xPosition = i * 25 + 15;
+            yPosition = d * 25 + 15;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -47,7 +47,7 @@ function setupTiles() {
 
 
 
-        if (x == 60 || x == (mapX - 1) * 100 + 60 || y == 60 || y == (mapY - 1) * 100 + 60) {
+        if (x == 15 || x == (mapX - 1) * 25 + 15 || y == 15 || y == (mapY - 1) * 25 + 15) {
             mapBorder = true;
             soldiers = 0;
         } else {
@@ -295,7 +295,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
 }
 
 function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
-
+circleSize = circleSize/3;
     if (isLand) {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
@@ -470,7 +470,7 @@ $(document).ready(function () {
     removeSingleTiles();
     setNations();
     drawBoard();
-    addSoldiers();
+    //addSoldiers();
 });
 
 function clickOrPress(x, y) {
@@ -488,7 +488,7 @@ function clickOrPress(x, y) {
         if (point) {
             putTilesInFocus(tiles[i]);
             drawBoard();
-            addSoldiers();
+           // addSoldiers();
             return;
             /*
                         console.log(tiles[i]);
