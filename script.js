@@ -26,7 +26,7 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 100 + 60;
+            xPosition = i * 100 + 1000;
             yPosition = d * 100 + 60;
             var coords = {
                 xPos: xPosition,
