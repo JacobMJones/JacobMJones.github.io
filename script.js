@@ -295,7 +295,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
 }
 
 function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
-circleSize = circleSize/3;
+circleSize = circleSize/2.5;
     if (isLand) {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
@@ -303,8 +303,8 @@ circleSize = circleSize/3;
         // ctx.stroke();
         ctx.shadowColor = "#8a8a8a";
         ctx.shadowBlur = 5;
-        ctx.shadowOffsetX = 10;
-        ctx.shadowOffsetY = 10;
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
 
     } else if (!isLand) {
         ctx.beginPath();
@@ -335,7 +335,10 @@ circleSize = circleSize/3;
     }
     ctx.fillStyle = color;
     ctx.fill();
+   
     ctx.closePath();
+    
+    
 }
 
 function addSoldiers() {
