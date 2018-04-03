@@ -16,14 +16,12 @@ var player1Turn;
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-ctx.canvas.width  = window.innerWidth;
-  ctx.canvas.height = window.innerHeight;
-  
+
     
 }
 
 function generateBoardCoords() {
-    var screenWidth = screen.width;
+    
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
