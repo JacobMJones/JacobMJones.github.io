@@ -65,79 +65,12 @@ function setupTiles() {
             tileColor: "#77cccc",
             alone: false,
             startSeed: false,
-            inFocus: false
+            inFocus: false,
+            mainFocus: false
         };
 
         tiles.push(tile);
         p = !p;
-    }
-}
-
-function removeSingleTiles() {
-    for (i = 0; i < landTiles.length; i++) {
-        for (p = 0; p < landTiles.length; p++) {
-
-
-        }
-    }
-}
-
-function setNations() {
-    for (i = 0; i < tiles.length; i++) {
-        let t = tiles[i];
-        if (t.mapBorder) {
-            t.land = false;
-        }
-
-        if (!t.land) {
-            t.tileColor = "#c5e9e9";
-        } else if (t.land) {
-            switch (t.partOf) {
-                case "0LandMass":
-                    t.tileColor = "#cc99bb";
-                    break;
-                case "1LandMass":
-                    t.tileColor = "#117777";
-                    break;
-                case "2LandMass":
-                    t.tileColor = "#117744";
-                    break;
-                case "3LandMass":
-                    t.tileColor = "#777711";
-                    break;
-                case "4LandMass":
-                    t.tileColor = "#774411";
-                    break;
-                case "5LandMass":
-                    t.tileColor = "#771122";
-                    break;
-                case "6LandMass":
-                    t.tileColor = "#f441ee";
-                    break;
-                case "7LandMass":
-                    t.tileColor = "#f9118a";
-                    break;
-                case "8LandMass":
-                    t.tileColor = "#207a00";
-                    break;
-                case "9LandMass":
-                    t.tileColor = "#8CC8bb";
-                    break;
-                case "10LandMass":
-                    t.tileColor = "#9CC8bb";
-                    break;
-
-
-            }
-        }
-    }
-
-
-}
-
-function setUpLandMassArrays() {
-    for (i = 0; i < amountOfSeeds; i++) {
-        window["LandMassArray" + i] = new Array();
     }
 }
 
@@ -250,6 +183,75 @@ function growIsland(landIndex) {
     }
 }
 
+function removeSingleTiles() {
+    for (i = 0; i < landTiles.length; i++) {
+        for (p = 0; p < landTiles.length; p++) {
+
+
+        }
+    }
+}
+
+function setNations() {
+    for (i = 0; i < tiles.length; i++) {
+        let t = tiles[i];
+        if (t.mapBorder) {
+            t.land = false;
+        }
+
+        if (!t.land) {
+            t.tileColor = "#c5e9e9";
+        } else if (t.land) {
+            switch (t.partOf) {
+                case "0LandMass":
+                    t.tileColor = "#cc99bb";
+                    break;
+                case "1LandMass":
+                    t.tileColor = "#117777";
+                    break;
+                case "2LandMass":
+                    t.tileColor = "#117744";
+                    break;
+                case "3LandMass":
+                    t.tileColor = "#777711";
+                    break;
+                case "4LandMass":
+                    t.tileColor = "#774411";
+                    break;
+                case "5LandMass":
+                    t.tileColor = "#771122";
+                    break;
+                case "6LandMass":
+                    t.tileColor = "#f441ee";
+                    break;
+                case "7LandMass":
+                    t.tileColor = "#f9118a";
+                    break;
+                case "8LandMass":
+                    t.tileColor = "#207a00";
+                    break;
+                case "9LandMass":
+                    t.tileColor = "#8CC8bb";
+                    break;
+                case "10LandMass":
+                    t.tileColor = "#9CC8bb";
+                    break;
+
+
+            }
+        }
+    }
+
+
+}
+
+function setUpLandMassArrays() {
+    for (i = 0; i < amountOfSeeds; i++) {
+        window["LandMassArray" + i] = new Array();
+    }
+}
+
+
 function putWaterAndLandIntoLists() {
 
     for (i = 0; i < tiles.length; i++) {
@@ -270,7 +272,7 @@ function drawBoard() {
     clearCanvas(ctx, canvas);
     for (i = 0; i < tiles.length; i++) {
 
-        drawTile(ctx, tiles[i].xPos, tiles[i].yPos, tiles[i].tileColor, 48, 15, tiles[i].tileID, tiles[i].land, tiles[i].inFocus);
+        drawTile(ctx, tiles[i].xPos, tiles[i].yPos, tiles[i].tileColor, 48, 15, tiles[i].tileID, tiles[i].land, tiles[i].inFocus, tiles[i].mainFocus);
     }
 
 
@@ -286,9 +288,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
     ctx.closePath();
 }
 
-function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn) {
-
-
+function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
 
     if (isLand) {
         ctx.beginPath();
@@ -309,12 +309,23 @@ function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedO
     }
 
     if (clickedOn) {
-        ctx.arc(x, y, circleSize + 5, 0, Math.PI * 2, true);
-        ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-        ctx.lineWidth = lineWidth;
-        ctx.stroke();
+        if (focusedTile) {
+            ctx.arc(x, y, circleSize + 1
+                    , 0, Math.PI * 2, true);
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.lineWidth = lineWidth+5;
+            ctx.stroke();
+
+        } else {
+            ctx.arc(x, y, circleSize -5, 0, Math.PI * 2, true);
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.lineWidth = lineWidth/2;
+            ctx.stroke();
+        }
     }
     ctx.fillStyle = color;
     ctx.fill();
@@ -341,6 +352,94 @@ function addSoldiers() {
     }
 }
 
+//make and return array
+function putTilesInFocus(t) {
+    if (tileInFocus == null) {
+        tileInFocus = t;
+        t.mainFocus = true;
+    }
+    
+    if (t != tileInFocus) {
+tileInFocus.mainFocus = false;
+        for (u = 0; u < tiles.length; u++) {
+            tiles[u].inFocus = false;
+        }
+    }
+
+    if (t.inFocus) {
+        tiles[i].inFocus = false;
+    } else {
+        tiles[i].inFocus = true;
+        tiles[i].mainFocus = true;
+        tileInFocus = tiles[i];
+    }
+
+
+    for (i = 0; i < tiles.length; i++) {
+
+        if (t.tileID == tiles[i].tileID - 1) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID + 1) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID + mapX) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID - mapX) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID - mapX + 1) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID - mapX - 1) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID + mapX + 1) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        } else if (t.tileID == tiles[i].tileID + mapX - 1) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+        }
+    }
+}
+
+/*
+var tilesAroundTile = [];
+for (i = 0; i < tiles.length; i++) {
+
+    var idRef = tiles[i].tileID + mapY - 1;
+    if (tiles[i].tileID == idRef) {
+        tiles[i].inFocus = true;
+    }
+}*/
+
+
 function clearCanvas(context, canvas) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     var w = canvas.width;
@@ -354,13 +453,9 @@ function pointInCircle(x, y, cx, cy, radius) {
 }
 
 $("canvas").mousedown(function (e) {
-
-
     x = e.clientX;
     y = e.clientY;
-
     clickOrPress(x, y);
-
 });
 $(document).ready(function () {
     init();
@@ -373,7 +468,6 @@ $(document).ready(function () {
     setNations();
     drawBoard();
     addSoldiers();
-
 });
 
 function clickOrPress(x, y) {
@@ -381,24 +475,33 @@ function clickOrPress(x, y) {
     var rect = canvas.getBoundingClientRect();
     var clickXOnCanvas = x - rect.left;
     var clickYOnCanvas = y - rect.top;
-
+    var tileClicked;
     for (i = 0; i < tiles.length; i++) {
         tileX = tiles[i].xPos - rect.left;
         tileY = tiles[i].yPos - rect.top;
 
         var point = pointInCircle(tiles[i].xPos, tiles[i].yPos, clickXOnCanvas, clickYOnCanvas, 50);
-        if (point) {
-            console.log(tiles[i]);
-            if (tiles[i].inFocus) {
-                tiles[i].inFocus = false;
-            } else {
-                tiles[i].inFocus = true;
-            }
 
-        } else {
-            tiles[i].inFocus = false;
+        if (point) {
+            putTilesInFocus(tiles[i]);
+            drawBoard();
+            addSoldiers();
+            return;
+            /*
+                        console.log(tiles[i]);
+                        if (tiles[i].inFocus) {
+                            tiles[i].inFocus = false;
+                        } else {
+                            tiles[i].inFocus = true;
+                            
+                        }
+                    } else {
+                        tiles[i].inFocus = false;
+                    }
+            */
         }
+
+        //drawBoard();
+        //addSoldiers();
     }
-    drawBoard();
-    addSoldiers();
 }
