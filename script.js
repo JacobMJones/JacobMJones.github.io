@@ -269,7 +269,9 @@ function putWaterAndLandIntoLists() {
 }
 
 function drawBoard() {
-    clearCanvas(ctx, canvas);
+  clearCanvas(ctx, canvas);
+    
+   
     for (i = 0; i < tiles.length; i++) {
 
         drawTile(ctx, tiles[i].xPos, tiles[i].yPos, tiles[i].tileColor, 48, 15, tiles[i].tileID, tiles[i].land, tiles[i].inFocus, tiles[i].mainFocus);
@@ -445,6 +447,10 @@ function clearCanvas(context, canvas) {
     var w = canvas.width;
     canvas.width = 1;
     canvas.width = w;
+    
+     
+  context.fillStyle = 'rgba(0,255,0,1)';
+    context.fillRect(0,0,window.innerWidth,window.innerHeight);
 }
 
 function pointInCircle(x, y, cx, cy, radius) {
