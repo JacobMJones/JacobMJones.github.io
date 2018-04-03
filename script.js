@@ -23,10 +23,11 @@ canvas.height = window.innerHeight;
 }
 
 function generateBoardCoords() {
+    var screenWidth = screen.width;
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 100 + 1000;
+            xPosition = i * 100 + 60;
             yPosition = d * 100 + 60;
             var coords = {
                 xPos: xPosition,
