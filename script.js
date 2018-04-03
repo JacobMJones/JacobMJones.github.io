@@ -8,7 +8,6 @@ var landMasses = [];
 var tileInFocus;
 var mapX = 19;
 var mapY = 19;
-
 var owner;
 var tileIndex = 0;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
@@ -28,8 +27,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 50 + 60;
-            yPosition = d * 50 + 60;
+            xPosition = i * 100 + 60;
+            yPosition = d * 100 + 60;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -297,7 +296,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
 }
 
 function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
-circleSize = circleSize/2
+
     if (isLand) {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
