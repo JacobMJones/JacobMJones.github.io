@@ -16,8 +16,8 @@ var player1Turn;
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-   canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+ctx.canvas.width  = window.innerWidth;
+  ctx.canvas.height = window.innerHeight;
   
     
 }
