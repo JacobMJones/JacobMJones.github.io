@@ -13,20 +13,30 @@ var tileIndex = 0;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
 var gFactor = Math.floor(Math.random() * 6 + 6);
 var player1Turn;
+
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-    var width = canvas.clientWidth; 
-    var height = canvas.clientHeight;
-    canvas.height = height;
-    canvas.width = width;
-    
-    
+
+    if (/Mobi/.test(navigator.userAgent)) {
+ document.getElementById("playerName").innerHTML = "Mobile";
+
+    } else {
+
+        var width = canvas.clientWidth;
+        var height = canvas.clientHeight;
+        canvas.height = height;
+        canvas.width = width;
+        document.getElementById("playerName").innerHTML = "Desktop";
+    }
+
+
+
 }
 
 function generateBoardCoords() {
-    
+
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
@@ -277,9 +287,9 @@ function putWaterAndLandIntoLists() {
 }
 
 function drawBoard() {
-  clearCanvas(ctx, canvas);
-    
-   
+    clearCanvas(ctx, canvas);
+
+
     for (i = 0; i < tiles.length; i++) {
 
         drawTile(ctx, tiles[i].xPos, tiles[i].yPos, tiles[i].tileColor, 48, 15, tiles[i].tileID, tiles[i].land, tiles[i].inFocus, tiles[i].mainFocus);
@@ -299,7 +309,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
 }
 
 function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
-circleSize = circleSize/1.5;
+    circleSize = circleSize / 1.5;
     if (isLand) {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
@@ -320,29 +330,28 @@ circleSize = circleSize/1.5;
 
     if (clickedOn) {
         if (focusedTile) {
-            ctx.arc(x, y, circleSize + 1
-                    , 0, Math.PI * 2, true);
+            ctx.arc(x, y, circleSize + 1, 0, Math.PI * 2, true);
             ctx.shadowBlur = 0;
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
-            ctx.lineWidth = lineWidth+5;
+            ctx.lineWidth = lineWidth + 5;
             ctx.stroke();
 
         } else {
-            ctx.arc(x, y, circleSize -5, 0, Math.PI * 2, true);
+            ctx.arc(x, y, circleSize - 5, 0, Math.PI * 2, true);
             ctx.shadowBlur = 0;
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
-            ctx.lineWidth = lineWidth/2;
+            ctx.lineWidth = lineWidth / 2;
             ctx.stroke();
         }
     }
     ctx.fillStyle = color;
     ctx.fill();
-   
+
     ctx.closePath();
-    
-    
+
+
 }
 
 function addSoldiers() {
@@ -369,9 +378,9 @@ function putTilesInFocus(t) {
         tileInFocus = t;
         t.mainFocus = true;
     }
-    
+
     if (t != tileInFocus) {
-tileInFocus.mainFocus = false;
+        tileInFocus.mainFocus = false;
         for (u = 0; u < tiles.length; u++) {
             tiles[u].inFocus = false;
         }
@@ -440,11 +449,12 @@ tileInFocus.mainFocus = false;
     }
 }
 
-function placeSoldiers(){
-    
+function placeSoldiers() {
+
 }
-function attack(){
-    
+
+function attack() {
+
 }
 
 function clearCanvas(context, canvas) {
@@ -452,9 +462,9 @@ function clearCanvas(context, canvas) {
     var w = canvas.width;
     canvas.width = 1;
     canvas.width = w;
-    
-     
-  
+
+
+
 }
 
 function pointInCircle(x, y, cx, cy, radius) {
@@ -495,7 +505,7 @@ function clickOrPress(x, y) {
         if (point) {
             putTilesInFocus(tiles[i]);
             drawBoard();
-           // addSoldiers();
+            // addSoldiers();
             return;
             /*
                         console.log(tiles[i]);
