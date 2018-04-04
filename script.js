@@ -26,8 +26,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 50 + 25;
-            yPosition = d * 50 + 25;
+            xPosition = i * 45 + 22;
+            yPosition = d * 45 + 22;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -47,7 +47,7 @@ function setupTiles() {
 
 
 
-        if (x == 25 || x == (mapX - 1) * 50 + 25 || y == 25 || y == (mapY - 1) * 50 + 25) {
+        if (x == 22 || x == (mapX - 1) * 45 + 22 || y == 22 || y == (mapY - 1) * 45 + 22) {
             mapBorder = true;
             soldiers = 0;
         } else {
