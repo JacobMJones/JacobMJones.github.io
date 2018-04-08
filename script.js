@@ -24,10 +24,10 @@ function init() {
 
     } else {
 
-        var width = canvas.clientWidth;
-        var height = canvas.clientHeight;
-        canvas.height = height;
-        canvas.width = width;
+      var width = 3000;
+       var height = 3000;
+      canvas.height = height;
+      canvas.width = width;
         document.getElementById("playerName").innerHTML = "Desktop";
     }
 
@@ -40,8 +40,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 45 + 22;
-            yPosition = d * 45 + 22;
+            xPosition = i * 100 + 25;
+            yPosition = d * 100 + 25;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -61,7 +61,7 @@ function setupTiles() {
 
 
 
-        if (x == 22 || x == (mapX - 1) * 45 + 22 || y == 22 || y == (mapY - 1) * 45 + 22) {
+        if (x == 25 || x == (mapX - 1) * 100 + 25 || y == 25 || y == (mapY - 1) * 100 + 25) {
             mapBorder = true;
             soldiers = 0;
         } else {
