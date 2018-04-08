@@ -31,13 +31,13 @@ function init() {
 function setSizingVariables() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if(isMobile){
-        alert(screen.width);
-              ctx.canvas.width = window.innerWidth * .7;
+       
+              ctx.canvas.width = window.innerWidth * .8;
     ctx.canvas.height= window.innerHeight;
 
     xyPositionMultiple = window.innerWidth * .025;
     xyPositionSpace = xyPositionMultiple;
-    autoSetCircleSize = xyPositionMultiple;
+    autoSetCircleSize = xyPositionMultiple*.9;
     }
         
 
