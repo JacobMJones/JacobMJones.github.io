@@ -18,7 +18,7 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-ctx.canvas.width  = window.innerWidth*.5;
+ ctx.canvas.width  = window.innerWidth*.5;
   ctx.canvas.height = window.innerHeight;
 
 
