@@ -20,7 +20,7 @@ function init() {
 
 
     if (/Mobi/.test(navigator.userAgent)) {
- document.getElementById("playerName").innerHTML = "Mobile";
+ document.getElementById("playerName").innerHTML = "Desktop";
 
     } else {
 

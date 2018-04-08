@@ -7,11 +7,19 @@
 </head>
 
 <body>
-    <div id="playerInterfaceDiv">
-    <p id="playerName">werk4</p>
+    <div id="playerOneInterfaceDiv" class="column">
+        <p id="playerName">werk4</p>
+        <button type="button">Click Me!</button>
     </div>
 
-    <canvas id="canvas" width="1000" height ="1000"></canvas>    
+    <canvas id="canvas"></canvas>
+    <div id="playerTwoInterfaceDiv" class="column">
+        <p id="playerName">Player 2</p>
+        <button type="button">Place</button>
+    </div>
+
+
+    <canvas id="canvas" class="column" width="1000" height="1000"></canvas>
     <script src="jquery-3.3.1.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
