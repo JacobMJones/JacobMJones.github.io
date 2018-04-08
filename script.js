@@ -32,11 +32,11 @@ function setSizingVariables() {
     
     if(navigator.userAgent.match(/iPad/i)){
               ctx.canvas.width = window.innerWidth * .1;
-    ctx.canvas.height = window.innerHeight;
+    ctx.canvas.height = 500;
 
     xyPositionMultiple = window.innerWidth * .025;
     xyPositionSpace = xyPositionMultiple;
-    autoSetCircleSize = xyPositionMultiple / 1.5;
+    autoSetCircleSize = xyPositionMultiple;
     }
         
 
