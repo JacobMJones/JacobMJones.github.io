@@ -1,12 +1,11 @@
 canvas {
-    margin: auto;
-    display: block;
-    box-sizing: border-box;       
+
+
     float: left;
-    width: 70%;
-   
-       text-align: center;
+    box-sizing: border-box;
+
 }
+
 .shadow {
     -moz-box-shadow: inset 0 0 10px #000000;
     -webkit-box-shadow: inset 0 0 10px #000000;
@@ -15,21 +14,20 @@ canvas {
 
 
 #playerOneInterfaceDiv {
-     width: 15%;
+    width: 15%;
     float: left;
-       text-align: center;
+    text-align: center;
     box-sizing: border-box;
 }
 
 #playerTwoInterfaceDiv {
     width: 15%;
     float: left;
-       text-align: center;
+    text-align: center;
     box-sizing: border-box;
 }
+
 button {
     display: inline-block;
     font-size: 16px;
 }
-
-
