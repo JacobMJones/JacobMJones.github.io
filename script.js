@@ -14,15 +14,22 @@ var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
 var gFactor = Math.floor(Math.random() * 6 + 6);
 var player1Turn;
 
+
+var xyPositionMultiple;
+var xyPositionSpace;
+var autoSetCircleSize;
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
- ctx.canvas.width  = window.innerWidth*.8;
+    
+  
+  ctx.canvas.width  = window.innerWidth*.6;
   ctx.canvas.height = window.innerHeight;
-
-
-
+    
+xyPositionMultiple = window.innerWidth*.03;
+xyPositionSpace = xyPositionMultiple/2;
+autoSetCircleSize = xyPositionMultiple/2;
 }
 
 function generateBoardCoords() {
@@ -30,8 +37,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 50 + 20;
-            yPosition = d * 50 + 20;
+            xPosition = i * xyPositionMultiple + 20;
+            yPosition = d * xyPositionMultiple + 20;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -51,7 +58,7 @@ function setupTiles() {
 
 
 
-        if (x == 20 || x == (mapX - 1) *50 + 20 || y == 20 || y == (mapY - 1) * 50 + 20) {
+        if (x == 20 || x == (mapX - 1) *xyPositionMultiple + 20 || y == 20 || y == (mapY - 1) * xyPositionMultiple + 20) {
             mapBorder = true;
             soldiers = 0;
         } else {
@@ -299,7 +306,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
 }
 
 function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
-    circleSize = circleSize/1.6;
+    circleSize = autoSetCircleSize;
     if (isLand) {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
