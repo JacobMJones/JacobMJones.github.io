@@ -29,12 +29,26 @@ function init() {
 }
 
 function setSizingVariables() {
-    ctx.canvas.width = window.innerWidth * .6;
+    
+    if(navigator.userAgent.match(/iPad/i)){
+              ctx.canvas.width = window.innerWidth * .1;
     ctx.canvas.height = window.innerHeight;
 
     xyPositionMultiple = window.innerWidth * .025;
     xyPositionSpace = xyPositionMultiple;
     autoSetCircleSize = xyPositionMultiple / 1.5;
+    }
+        
+
+    else{
+          ctx.canvas.width = window.innerWidth * .6;
+    ctx.canvas.height = window.innerHeight;
+
+    xyPositionMultiple = window.innerWidth * .025;
+    xyPositionSpace = xyPositionMultiple;
+    autoSetCircleSize = xyPositionMultiple / 1.5;
+    }
+  
 }
 
 function generateBoardCoords() {
