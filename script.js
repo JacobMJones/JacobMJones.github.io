@@ -31,7 +31,7 @@ function init() {
 function setSizingVariables() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if(isMobile){
-        alert("is mobile1");
+        alert("is mobile1" + window.innerWidth);
               ctx.canvas.width = window.innerWidth * .1;
     ctx.canvas.height = 500;
 
