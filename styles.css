@@ -1,5 +1,6 @@
 
 canvas {
+  
     padding-top: 10px;
     padding-left: 10px;
     float: left;
@@ -13,9 +14,13 @@ canvas {
 }
 
 
-
+#gameArea{
+    margin: auto;
+    border: 3px solid #73AD21;
+    padding-left:200px;
+}
 #canvasDiv {
-    width: 75%;
+    width: 50%;
     float: left;
     box-sizing: border-box;
 }
@@ -32,6 +37,7 @@ canvas {
     float: left;
     text-align: center;
     box-sizing: border-box;
+    padding-left:300px;
 }
 
 button {
