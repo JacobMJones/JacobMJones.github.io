@@ -18,18 +18,23 @@ var player1Turn;
 var xyPositionMultiple;
 var xyPositionSpace;
 var autoSetCircleSize;
+
 function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-    
-  
-  ctx.canvas.width  = window.innerWidth*.6;
-  ctx.canvas.height = window.innerHeight;
-    
-xyPositionMultiple = window.innerWidth*.03;
-xyPositionSpace = xyPositionMultiple/2;
-autoSetCircleSize = xyPositionMultiple/2;
+
+
+
+}
+
+function setSizingVariables() {
+    ctx.canvas.width = window.innerWidth * .6;
+    ctx.canvas.height = window.innerHeight*.9;
+
+    xyPositionMultiple = window.innerWidth * .03;
+    xyPositionSpace = xyPositionMultiple / 2;
+    autoSetCircleSize = xyPositionMultiple / 2;
 }
 
 function generateBoardCoords() {
@@ -58,7 +63,7 @@ function setupTiles() {
 
 
 
-        if (x == 20 || x == (mapX - 1) *xyPositionMultiple + 20 || y == 20 || y == (mapY - 1) * xyPositionMultiple + 20) {
+        if (x == 20 || x == (mapX - 1) * xyPositionMultiple + 20 || y == 20 || y == (mapY - 1) * xyPositionMultiple + 20) {
             mapBorder = true;
             soldiers = 0;
         } else {
@@ -476,6 +481,7 @@ $("canvas").mousedown(function (e) {
 });
 $(document).ready(function () {
     init();
+    setSizingVariables();
     generateBoardCoords();
     setupTiles();
     setUpLandMassArrays();
