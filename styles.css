@@ -1,7 +1,7 @@
 canvas {
     margin: auto;
     display: block;
-
+box-sizing: border-box;
 }
 .shadow {
    -moz-box-shadow:    inset 0 0 10px #000000;
