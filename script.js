@@ -34,7 +34,7 @@ function setSizingVariables() {
 
     xyPositionMultiple = window.innerWidth * .03;
     xyPositionSpace = xyPositionMultiple / 2;
-    autoSetCircleSize = xyPositionMultiple / 2;
+    autoSetCircleSize = xyPositionMultiple / 1.45;
 }
 
 function generateBoardCoords() {
