@@ -29,8 +29,9 @@ function init() {
 }
 
 function setSizingVariables() {
-    
-    if(navigator.userAgent.match(/iPad/i)){
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if(isMobile){
+        alert("is mobile1");
               ctx.canvas.width = window.innerWidth * .1;
     ctx.canvas.height = 500;
 
