@@ -42,6 +42,7 @@ function setSizingVariables() {
         
 
     else{
+        alert("not mobilke");
           ctx.canvas.width = window.innerWidth * .6;
     ctx.canvas.height = window.innerHeight;
 
