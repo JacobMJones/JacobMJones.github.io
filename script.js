@@ -30,8 +30,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 40 + 10;
-            yPosition = d * 40 + 10;
+            xPosition = i * 40 + 15;
+            yPosition = d * 40 + 15;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -51,7 +51,7 @@ function setupTiles() {
 
 
 
-        if (x == 10 || x == (mapX - 1) *40 + 10 || y == 10 || y == (mapY - 1) * 40 + 10) {
+        if (x == 15 || x == (mapX - 1) *40 + 15 || y == 15 || y == (mapY - 1) * 40 + 15) {
             mapBorder = true;
             soldiers = 0;
         } else {
@@ -299,7 +299,7 @@ function drawSoldiers(ctx, x, y, color, circleSize, lineWidth) {
 }
 
 function drawTile(ctx, x, y, color, circleSize, lineWidth, tID, isLand, clickedOn, focusedTile) {
-    circleSize = circleSize/2;
+    circleSize = circleSize/1.6;
     if (isLand) {
         ctx.beginPath();
         ctx.arc(x, y, circleSize - 10, 0, Math.PI * 2, true);
