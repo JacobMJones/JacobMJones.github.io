@@ -37,7 +37,7 @@ function setSizingVariables() {
 
     xyPositionMultiple = window.innerWidth * .025;
     xyPositionSpace = xyPositionMultiple;
-    autoSetCircleSize = xyPositionMultiple*.9;
+    autoSetCircleSize = xyPositionMultiple *.8;
     }
         
 
