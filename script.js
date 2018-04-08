@@ -33,7 +33,7 @@ function setSizingVariables() {
     if(isMobile){
         alert("is mobile1" + window.innerWidth);
               ctx.canvas.width = window.innerWidth * .1;
-    ctx.canvas.height = 500;
+    ctx.canvas.height= window.innerHeight;
 
     xyPositionMultiple = window.innerWidth * .025;
     xyPositionSpace = xyPositionMultiple;
