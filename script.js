@@ -30,11 +30,11 @@ function init() {
 
 function setSizingVariables() {
     ctx.canvas.width = window.innerWidth * .6;
-    ctx.canvas.height = window.innerHeight*.9;
+    ctx.canvas.height = window.innerHeight;
 
-    xyPositionMultiple = window.innerWidth * .03;
-    xyPositionSpace = xyPositionMultiple / 2;
-    autoSetCircleSize = xyPositionMultiple / 1.45;
+    xyPositionMultiple = window.innerWidth * .025;
+    xyPositionSpace = xyPositionMultiple;
+    autoSetCircleSize = xyPositionMultiple / 1.8;
 }
 
 function generateBoardCoords() {
