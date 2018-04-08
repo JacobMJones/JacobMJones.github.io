@@ -14,14 +14,14 @@ canvas {
 
 
 #playerOneInterfaceDiv {
-    width: 15%;
+    width: 10%;
     float: left;
     text-align: center;
     box-sizing: border-box;
 }
 
 #playerTwoInterfaceDiv {
-    width: 15%;
+    width: 10%;
     float: left;
     text-align: center;
     box-sizing: border-box;

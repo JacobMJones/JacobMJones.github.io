@@ -18,7 +18,8 @@ function init() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-
+ctx.canvas.width  = window.innerWidth*.4;
+  ctx.canvas.height = window.innerHeight*.9;
 
 
 
@@ -29,8 +30,8 @@ function generateBoardCoords() {
     var xPosition, yPosition;
     for (i = 0; i < mapX; i++) {
         for (d = 0; d < mapY; d++) {
-            xPosition = i * 25 + 10;
-            yPosition = d * 25 + 10;
+            xPosition = i * 40 + 10;
+            yPosition = d * 40 + 10;
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
@@ -50,7 +51,7 @@ function setupTiles() {
 
 
 
-        if (x == 10 || x == (mapX - 1) * 25 + 10 || y == 10 || y == (mapY - 1) * 25 + 10) {
+        if (x == 10 || x == (mapX - 1) *40 + 10 || y == 10 || y == (mapY - 1) * 40 + 10) {
             mapBorder = true;
             soldiers = 0;
         } else {
