@@ -22,8 +22,6 @@ function setCanvas() {
    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   
     if (isMobile) {
-
-
         canvas.setAttribute('width', '500');
         canvas.setAttribute('height', '500');
         tileSize = 5;
@@ -44,8 +42,8 @@ function generateBoardCoords() {
         for (d = 0; d < squareSize; d++) {
 
             //this can be for positioning
-            xPosition = i * 40 + 100;
-            yPosition = d * 40 + 100;
+            xPosition = i * 40 + 50;
+            yPosition = d * 40 + 50;
 
             var coords = {
                 xPos: xPosition,
