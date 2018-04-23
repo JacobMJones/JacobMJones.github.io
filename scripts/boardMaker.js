@@ -1,18 +1,35 @@
 var boardCoords = [];
 var tiles = [];
 var buttons = [];
+var landTiles = [];
+var waterTiles = [];
 var canvas;
 var ctx;
 var leftPadding = 200;
 var upperPadding = 200;
 var tileSize = 15;
 var tileSizeInFocus = 25;
+var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
+
+//var amountOfSeeds = 4;
+//var gFactor = 6;
+var squareSize = 19;
+
+
+var gFactor = Math.floor(Math.random() * 6 + 6);
+
+var landColor = "#aaa323";
+var waterColor = "#eee121"
 
 function boardStart() {
     setCanvas();
     generateBoardCoords();
     setupTiles();
     setupInterface();
+    setUpLandMassArrays();
+    pickStartSeed();
+    putWaterAndLandIntoLists();
+    setNations();
     drawCanvas();
 }
 
@@ -36,7 +53,7 @@ function setCanvas() {
 }
 
 function generateBoardCoords() {
-    var squareSize = 19;
+
     var xPosition, yPosition;
     for (i = 0; i < squareSize; i++) {
         for (d = 0; d < squareSize; d++) {
@@ -48,7 +65,7 @@ function generateBoardCoords() {
             var coords = {
                 xPos: xPosition,
                 yPos: yPosition,
-                tileId: i + d
+
             }
             boardCoords.push(coords);
         }
@@ -56,15 +73,28 @@ function generateBoardCoords() {
 }
 
 function setupTiles() {
-    for (var i = 0; i < boardCoords.length; i++) {
 
+    for (var i = 0; i < boardCoords.length; i++) {
+        var x = boardCoords[i].xPos;
+        var y = boardCoords[i].yPos;
+        var mapBorder = false;
+        if (x == 250 || x == 970 || y == 50 || y == 770) {
+            mapBorder = true;
+
+        } else {
+            mapBorder = false;
+        }
         var tile = {
             xCoord: boardCoords[i].xPos,
             yCoord: boardCoords[i].yPos,
             inFocus: false,
-            mainColor: "#77c000",
-            isLand: false,
-            startSeed: false
+            mainColor: "",
+            land: false,
+            startSeed: false,
+            growthFactor: 0,
+            partOf: "",
+            mapBorder: mapBorder,
+            tileId: i
         }
         tiles.push(tile);
     }
@@ -183,14 +213,20 @@ function drawTitles() {
 function drawTile(tile) {
 
     ctx.beginPath();
+
     if (tile.inFocus) {
         ctx.fillStyle = '#8a8a8a';
         ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
+        console.log(tile);
     } else {
+
+
+
         ctx.fillStyle = tile.mainColor;
-        ctx.arc(tile.xCoord, tile.yCoord, tileSize, 0, Math.PI * 2, true);
+
     }
 
+    ctx.arc(tile.xCoord, tile.yCoord, tileSize, 0, Math.PI * 2, true);
 
     ctx.shadowColor = "#8a8a8a";
     ctx.shadowBlur = 5;
@@ -203,14 +239,374 @@ function drawTile(tile) {
 
 function drawCanvas() {
 
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-drawButtons();
-      drawTitles();
+    drawButtons();
+    drawTitles();
     for (i = 0; i < tiles.length; i++) {
         drawTile(tiles[i]);
     }
 
-    
-  
 }
+
+function setUpLandMassArrays() {
+    for (i = 0; i < amountOfSeeds; i++) {
+        window["LandMassArray" + i] = new Array();
+    }
+}
+
+function pickStartSeed() {
+
+    for (o = 0; o < amountOfSeeds; o++) {
+
+        startSeed = Math.floor(Math.random() * tiles.length);
+
+
+        if (tiles[startSeed].partOf == "") {
+            tiles[startSeed].partOf = o + "LandMass";
+            tiles[startSeed].growthFactor = gFactor;
+
+
+            var partOf;
+
+            switch (o) {
+                case 0:
+                    partOf = "0LandMass";
+                    LandMassArray0.push(tiles[i]);
+                    break;
+                case 1:
+                    partOf = "1LandMass";
+                    LandMassArray1.push(tiles[i]);
+                    break;
+                case 2:
+                    partOf = "2LandMass";
+                    LandMassArray2.push(tiles[i]);
+                    break;
+                case 3:
+                    partOf = "3LandMass";
+                    LandMassArray3.push(tiles[i]);
+                    break;
+                case 4:
+                    partOf = "4LandMass";
+                    LandMassArray4.push(tiles[i]);
+                    break;
+                case 5:
+                    partOf = "5LandMass";
+                    LandMassArray5.push(tiles[i]);
+                    break;
+                case 6:
+                    partOf = "6LandMass";
+                    LandMassArray6.push(tiles[i]);
+                    break;
+                case 7:
+                    partOf = "7LandMass";
+                    LandMassArray7.push(tiles[i]);
+                    break;
+                case 8:
+                    partOf = "8LandMass";
+                    LandMassArray8.push(tiles[i]);
+                    break;
+                case 9:
+                    partOf = "9LandMass";
+                    LandMassArray9.push(tiles[i]);
+                    break;
+                case 10:
+                    partOf = "10LandMass";
+                    LandMassArray10.push(tiles[i]);
+                    break;
+            }
+
+            growIsland(tiles[startSeed], partOf);
+        }
+
+    }
+}
+
+function growIsland(startTile, o) {
+    console.log("island");
+
+    for (var i = 0; i < 20; i++) {
+        rndNum = Math.floor(Math.random() * 4);
+
+        console.log(rndNum);
+        switch (rndNum) {
+
+            //grow right one   
+            case 0:
+                newTileSeedIndex = startTile.tileId + 1;
+                break;
+                //grow left one
+            case 1:
+                newTileSeedIndex = startTile.tileId + 19;
+                break;
+            case 2:
+                newTileSeedIndex = 
+                startTile.tileId -19;
+                break;
+            case 3:
+                newTileSeedIndex = startTile.tileId - 1;
+                break;
+                //grow down one
+        }
+        if (newTileSeedIndex < tiles.length - 1 && newTileSeedIndex > 0) {
+            if (tiles[newTileSeedIndex].partOf == "" && tiles[newTileSeedIndex].mapBorder == false) {
+                tiles[newTileSeedIndex].partOf = o;
+                startTile = tiles[newTileSeedIndex];
+            }
+        }
+        else{
+            
+        }
+    }
+
+}
+
+function putWaterAndLandIntoLists() {
+
+    for (i = 0; i < tiles.length; i++) {
+        if (tiles[i].land == true) {
+            landTiles.push(tiles[i]);
+
+        } else {
+            waterTiles.push(tiles[i]);
+        }
+    }
+    console.log("amount of land tiles: " + landTiles.length + " amount of water tiles: " + waterTiles.length);
+
+}
+
+function setNations() {
+    for (i = 0; i < tiles.length; i++) {
+        let t = tiles[i];
+        if (t.mapBorder || t.partOf == "") {
+            t.land = false;
+            t.partOf = "water";
+            t.mainColor = "#c5e3e9";
+        } else {
+
+            switch (t.partOf) {
+                case "0LandMass":
+                    t.mainColor = "#cc99bb";
+                    break;
+                case "1LandMass":
+                    t.mainColor = "#117777";
+                    break;
+                case "2LandMass":
+                    t.mainColor = "#117744";
+                    break;
+                case "3LandMass":
+                    t.mainColor = "#aa7711";
+                    break;
+                case "4LandMass":
+                    t.mainColor = "#77a411";
+                    break;
+                case "5LandMass":
+                    t.mainColor = "#771122";
+                    break;
+                case "6LandMass":
+                    t.mainColor = "#f12111";
+                    break;
+                case "7LandMass":
+                    t.mainColor = "#f9118a";
+                    break;
+                case "8LandMass":
+                    t.mainColor = "#207a00";
+                    break;
+                case "9LandMass":
+                    t.mainColor = "#8CC8bb";
+                    break;
+                case "10LandMass":
+                    t.mainColor = "#9CC8bb";
+                    break;
+
+
+            }
+        }
+    }
+
+
+}
+
+/*
+    var canGrow = true;
+    var newSeedIndex;
+    while (canGrow) {
+
+
+        for (i = 1; i < tiles.length; i++) {
+            if (tiles[i].growthFactor > 0) {
+                tiles[i].growthFactor--;
+                var seedingTileID = tiles[i].tileId;
+
+
+                rndNum = Math.floor(Math.random() * 2);
+
+                switch (rndNum) {
+
+                    //grow right one   
+                    case 0:
+                        newSeedIndex = tiles[i].tileId + 1;
+                        break;
+                        //grow left one
+                    case 1:
+                        newSeedIndex = tiles[i].tileId + 2;
+                        break;
+                        //grow down one
+                }
+
+                if (newSeedIndex < tiles.length) {
+
+
+                    if (tiles[newSeedIndex].partOf == "") {
+                        tiles[newSeedIndex].partOf = o;
+                        tiles[newSeedIndex].growthFactor = tiles[i].growthFactor;
+                    }
+                }
+            }
+        }
+
+
+
+        canGrow = false;
+    }
+
+    /*
+    console.log(o);
+
+    var canGrow = true;
+
+    while (canGrow) {
+        var grow = false;
+
+        for (i = 1; i < tiles.length; i++) {
+            var newTileSeedIndex = 0;
+            if (tiles[i].growthFactor > 0) {
+                var seedingTileID = tiles[i].tileId;
+               
+                tiles[i].growthFactor--;
+
+
+                rndNum = Math.floor(Math.random() * 3);
+
+
+                switch (rndNum) {
+
+                    //grow right one   
+                    case 1:
+                        newTileSeedIndex = tiles[i].tileId + 2;
+                        break;
+                        //grow left one
+                    case 2:
+                        newTileSeedIndex = tiles[i].tileId + 1;
+                        break;
+                        //grow down one
+                }
+
+                if (tiles.length > newTileSeedIndex) {
+                    if (!tiles[newTileSeedIndex].land && !tiles[i].mapBorder) {
+                        tiles[i].land = true;
+                         tiles[i].partOf = o;
+                        tiles[newTileSeedIndex].growthFactor = tiles[i].growthFactor;
+                    }
+                      
+                }
+            
+              
+                grow = true;
+            }
+            if (!grow) {
+                canGrow = false;
+            }
+        }
+    }
+
+    /*
+    var k = 0;
+    var growing = true;
+    var canGrow = true;
+
+    while (canGrow) {
+
+        var grow = false;
+        for (i = 1; i < tiles.length; i++) {
+
+            if (tiles[i].growthFactor > 0) {
+                var seedingTileID = tiles[i].tileID;
+                var newSeedingTile;
+                tiles[i].growthFactor--;
+
+                rndNum = Math.floor(Math.random() * 3);
+
+                switch (rndNum) {
+
+                    //grow right one   
+                    case 0:
+                        newSeedingTile = seedingTileID + mapY - 1;
+                        break;
+                        //grow left one
+                    case 1:
+                        newSeedingTile = seedingTileID - mapY - 1;
+                        break;
+                        //grow down one
+                    case 2:
+                        newSeedingTile = seedingTileID;
+                        break;
+                        //grow up one
+                    case 3:
+                        newSeedingTile = seedingTileID - 2;
+                        break;
+                }
+                /*
+                if (!tiles[i].mapBorder && tiles[newSeedingTile].land == false) {
+                    tiles[i].land = true;
+                    tiles[i].partOf = partOf;
+                    tiles[newSeedingTile].growthFactor = tiles[i].growthFactor;
+                }
+
+
+
+                switch (o) {
+                    case 0:
+                        LandMassArray0.push(tiles[i]);
+                        break;
+                    case 1:
+                        LandMassArray1.push(tiles[i]);
+                        break;
+                    case 2:
+                        LandMassArray2.push(tiles[i]);
+                        break;
+                    case 3:
+                        LandMassArray3.push(tiles[i]);
+                        break;
+                    case 4:
+                        LandMassArray4.push(tiles[i]);
+                        break;
+                    case 5:
+                        LandMassArray5.push(tiles[i]);
+                        break;
+                    case 6:
+                        LandMassArray6.push(tiles[i]);
+                        break;
+                    case 7:
+                        LandMassArray7.push(tiles[i]);
+                        break;
+                    case 8:
+                        LandMassArray8.push(tiles[i]);
+                        break;
+                    case 9:
+                        LandMassArray9.push(tiles[i]);
+                        break;
+                    case 10:
+                        LandMassArray10.push(tiles[i]);
+                        break;
+                }
+
+
+                grow = true;
+            }
+
+        }
+        if (!grow) {
+            canGrow = false;
+        }
+    }
+    */

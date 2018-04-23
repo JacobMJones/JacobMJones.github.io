@@ -40,7 +40,7 @@ function clickOrPress(x, y) {
             console.log("clicked");
         }
     }
-    
+  
     drawCanvas();
 
 
