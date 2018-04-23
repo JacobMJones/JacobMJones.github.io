@@ -7,7 +7,7 @@ var canvas;
 var ctx;
 var leftPadding = 200;
 var upperPadding = 200;
-var tileSize = 15;
+var tileSize = 20;
 var tileSizeInFocus = 25;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
 
@@ -219,15 +219,11 @@ function drawTile(tile) {
         ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
         console.log(tile);
     } else {
-
-
-
         ctx.fillStyle = tile.mainColor;
-
+        ctx.arc(tile.xCoord, tile.yCoord, 18, 0, Math.PI * 2, true);
     }
 
-    ctx.arc(tile.xCoord, tile.yCoord, tileSize, 0, Math.PI * 2, true);
-
+    
     ctx.shadowColor = "#8a8a8a";
     ctx.shadowBlur = 5;
     ctx.shadowOffsetX = 2.5;
@@ -423,188 +419,3 @@ function setNations() {
 
 
 }
-
-/*
-    var canGrow = true;
-    var newSeedIndex;
-    while (canGrow) {
-
-
-        for (i = 1; i < tiles.length; i++) {
-            if (tiles[i].growthFactor > 0) {
-                tiles[i].growthFactor--;
-                var seedingTileID = tiles[i].tileId;
-
-
-                rndNum = Math.floor(Math.random() * 2);
-
-                switch (rndNum) {
-
-                    //grow right one   
-                    case 0:
-                        newSeedIndex = tiles[i].tileId + 1;
-                        break;
-                        //grow left one
-                    case 1:
-                        newSeedIndex = tiles[i].tileId + 2;
-                        break;
-                        //grow down one
-                }
-
-                if (newSeedIndex < tiles.length) {
-
-
-                    if (tiles[newSeedIndex].partOf == "") {
-                        tiles[newSeedIndex].partOf = o;
-                        tiles[newSeedIndex].growthFactor = tiles[i].growthFactor;
-                    }
-                }
-            }
-        }
-
-
-
-        canGrow = false;
-    }
-
-    /*
-    console.log(o);
-
-    var canGrow = true;
-
-    while (canGrow) {
-        var grow = false;
-
-        for (i = 1; i < tiles.length; i++) {
-            var newTileSeedIndex = 0;
-            if (tiles[i].growthFactor > 0) {
-                var seedingTileID = tiles[i].tileId;
-               
-                tiles[i].growthFactor--;
-
-
-                rndNum = Math.floor(Math.random() * 3);
-
-
-                switch (rndNum) {
-
-                    //grow right one   
-                    case 1:
-                        newTileSeedIndex = tiles[i].tileId + 2;
-                        break;
-                        //grow left one
-                    case 2:
-                        newTileSeedIndex = tiles[i].tileId + 1;
-                        break;
-                        //grow down one
-                }
-
-                if (tiles.length > newTileSeedIndex) {
-                    if (!tiles[newTileSeedIndex].land && !tiles[i].mapBorder) {
-                        tiles[i].land = true;
-                         tiles[i].partOf = o;
-                        tiles[newTileSeedIndex].growthFactor = tiles[i].growthFactor;
-                    }
-                      
-                }
-            
-              
-                grow = true;
-            }
-            if (!grow) {
-                canGrow = false;
-            }
-        }
-    }
-
-    /*
-    var k = 0;
-    var growing = true;
-    var canGrow = true;
-
-    while (canGrow) {
-
-        var grow = false;
-        for (i = 1; i < tiles.length; i++) {
-
-            if (tiles[i].growthFactor > 0) {
-                var seedingTileID = tiles[i].tileID;
-                var newSeedingTile;
-                tiles[i].growthFactor--;
-
-                rndNum = Math.floor(Math.random() * 3);
-
-                switch (rndNum) {
-
-                    //grow right one   
-                    case 0:
-                        newSeedingTile = seedingTileID + mapY - 1;
-                        break;
-                        //grow left one
-                    case 1:
-                        newSeedingTile = seedingTileID - mapY - 1;
-                        break;
-                        //grow down one
-                    case 2:
-                        newSeedingTile = seedingTileID;
-                        break;
-                        //grow up one
-                    case 3:
-                        newSeedingTile = seedingTileID - 2;
-                        break;
-                }
-                /*
-                if (!tiles[i].mapBorder && tiles[newSeedingTile].land == false) {
-                    tiles[i].land = true;
-                    tiles[i].partOf = partOf;
-                    tiles[newSeedingTile].growthFactor = tiles[i].growthFactor;
-                }
-
-
-
-                switch (o) {
-                    case 0:
-                        LandMassArray0.push(tiles[i]);
-                        break;
-                    case 1:
-                        LandMassArray1.push(tiles[i]);
-                        break;
-                    case 2:
-                        LandMassArray2.push(tiles[i]);
-                        break;
-                    case 3:
-                        LandMassArray3.push(tiles[i]);
-                        break;
-                    case 4:
-                        LandMassArray4.push(tiles[i]);
-                        break;
-                    case 5:
-                        LandMassArray5.push(tiles[i]);
-                        break;
-                    case 6:
-                        LandMassArray6.push(tiles[i]);
-                        break;
-                    case 7:
-                        LandMassArray7.push(tiles[i]);
-                        break;
-                    case 8:
-                        LandMassArray8.push(tiles[i]);
-                        break;
-                    case 9:
-                        LandMassArray9.push(tiles[i]);
-                        break;
-                    case 10:
-                        LandMassArray10.push(tiles[i]);
-                        break;
-                }
-
-
-                grow = true;
-            }
-
-        }
-        if (!grow) {
-            canGrow = false;
-        }
-    }
-    */
