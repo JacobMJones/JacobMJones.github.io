@@ -330,11 +330,9 @@ function growIsland(startTile, o) {
         console.log(rndNum);
         switch (rndNum) {
 
-            //grow right one   
             case 0:
                 newTileSeedIndex = startTile.tileId + 1;
-                break;
-                //grow left one
+                break;       
             case 1:
                 newTileSeedIndex = startTile.tileId + 19;
                 break;
@@ -345,7 +343,7 @@ function growIsland(startTile, o) {
             case 3:
                 newTileSeedIndex = startTile.tileId - 1;
                 break;
-                //grow down one
+               
         }
         if (newTileSeedIndex < tiles.length - 1 && newTileSeedIndex > 0) {
             if (tiles[newTileSeedIndex].partOf == "" && tiles[newTileSeedIndex].mapBorder == false) {
