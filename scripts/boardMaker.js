@@ -20,12 +20,7 @@ function setCanvas() {
     ctx = canvas.getContext("2d");
 
    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-		var element = document.getElementById('text');
-		if (isMobile) {
-  			console.log("You are using Mobile");
-		} else {
-			console.log("You are using Desktop");
-		}
+  
     if (isMobile) {
 
 
