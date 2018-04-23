@@ -14,24 +14,30 @@ function boardStart() {
     drawBoard();
 }
 
+
 function setCanvas() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
 
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
+   var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		var element = document.getElementById('text');
+		if (isMobile) {
+  			console.log("You are using Mobile");
+		} else {
+			console.log("You are using Desktop");
+		}
     if (isMobile) {
 
 
         canvas.setAttribute('width', '500');
         canvas.setAttribute('height', '500');
-        tileSize = 19;
-        tileSizeInFocus = 25;
+        tileSize = 5;
+        tileSizeInFocus = 15;
     } else {
         canvas.setAttribute('width', '1000');
         canvas.setAttribute('height', '1000');
-        tileSize = 6.6;
-        tileSizeInFocus = 16.6;
+        tileSize = 15;
+        tileSizeInFocus = 25;
     }
 }
 
