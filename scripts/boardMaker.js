@@ -18,12 +18,21 @@ function setCanvas() {
     ctx = canvas.getContext("2d");
     
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   
     if(isMobile){
-        canvas.setAttribute('width', '320');
-canvas.setAttribute('height', '480');
-    } else {
+        
+        
+        canvas.setAttribute('width', '500');
+canvas.setAttribute('height', '500');
+        var tileSize = 10;
+var tileSizeInFocus = 25;
+    } 
+    
+    else {
          canvas.setAttribute('width', '1000');
 canvas.setAttribute('height', '1000');
+        var tileSize = 6.6;
+var tileSizeInFocus = 16.6;
     }
 }
 
