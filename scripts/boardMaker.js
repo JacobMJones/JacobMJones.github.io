@@ -23,12 +23,12 @@ function setCanvas() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-        canvas.setAttribute('width', '500');
-        canvas.setAttribute('height', '500');
+        canvas.setAttribute('width', '800');
+        canvas.setAttribute('height', '600');
         tileSize = 5;
         tileSizeInFocus = 15;
     } else {
-        canvas.setAttribute('width', '1200');
+        canvas.setAttribute('width', '1250');
         canvas.setAttribute('height', '1000');
         tileSize = 15;
         tileSizeInFocus = 25;
@@ -73,59 +73,56 @@ function setupTiles() {
 function setupButtons() {
 
     for (var i = 0; i < 8; i++) {
-
-     
-
-        var bt;
+        var bText;
         var player1Button;
         var xCo;
         switch (i) {
             case 0:
-                bt = "Place";
+                bText = "Place";
                 player1Button = true;
                 xCo = 50;
                 yCo = 150;
                 break;
             case 1:
-                bt = "Move";
+                bText = "Move";
                 player1Button = true;
-                 xCo = 50;
+                xCo = 50;
                 yCo = 300;
                 break;
             case 2:
-                bt = "Attack";
+                bText = "Attack";
                 player1Button = true;
-                 xCo = 50;
+                xCo = 50;
                 yCo = 450;
                 break;
             case 3:
-                bt = "Fortify";
+                bText = "Fortify";
                 player1Button = true;
-                 xCo = 50;
+                xCo = 50;
                 yCo = 600;
                 break;
             case 4:
-                bt = "Place";
+                bText = "Place";
                 player1Button = false;
-                 xCo = 1050;
+                xCo = 1050;
                 yCo = 150;
                 break;
             case 5:
-                bt = "Move";
+                bText = "Move";
                 player1Button = false;
                 yCo = 300;
-                 xCo = 1050;
+                xCo = 1050;
                 break;
             case 6:
-                bt = "Attack";
+                bText = "Attack";
                 player1Button = false;
-                 xCo = 1050;
+                xCo = 1050;
                 yCo = 450;
                 break;
             case 7:
-                bt = "Fortify";
+                bText = "Fortify";
                 player1Button = false;
-                 xCo = 1050;
+                xCo = 1050;
                 yCo = 600;
                 break;
         }
@@ -144,7 +141,7 @@ function setupButtons() {
             yMidPoint: yMid,
             xLength: 150,
             yLength: 100,
-            buttonText: bt,
+            buttonText: bText,
             player1Button: player1Button
         }
         buttons.push(button);
@@ -169,29 +166,18 @@ function drawText(txt, font, col, x, y) {
 function drawButtons() {
 
     for (var i = 0; i < buttons.length; i++) {
+        ctx.beginPath();
         ctx.strokeRect(buttons[i].xCoord, buttons[i].yCoord, buttons[i].xLength, buttons[i].yLength);
         ctx.stroke();
 
         drawText(buttons[i].buttonText, "22px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
+        ctx.closePath();
     }
 }
 
 function drawTitles() {
     drawText("Player 1", "30px Verdana", '#000000', 50, 50);
     drawText("Player 2", "30px Verdana", '#000000', 1050, 50);
-}
-
-function drawCanvas() {
-
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (i = 0; i < tiles.length; i++) {
-        drawTile(tiles[i]);
-    }
-
-    drawButtons();
-    drawTitles();
 }
 
 function drawTile(tile) {
@@ -210,8 +196,21 @@ function drawTile(tile) {
     ctx.shadowBlur = 5;
     ctx.shadowOffsetX = 2.5;
     ctx.shadowOffsetY = 2.5;
-
     ctx.fill();
-
     ctx.closePath();
+
+}
+
+function drawCanvas() {
+
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawButtons();
+      drawTitles();
+    for (i = 0; i < tiles.length; i++) {
+        drawTile(tiles[i]);
+    }
+
+    
+  
 }

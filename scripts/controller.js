@@ -34,7 +34,7 @@ function clickOrPress(x, y) {
 
         distance = Math.sqrt(a * a + b * b);
 
-        if (distance < distanceToRegisterTileSelection * 2) {
+        if (distance < distanceToRegisterTileSelection * 4) {
 
             buttons[k].buttonText = "Clicked";
             console.log("clicked");
