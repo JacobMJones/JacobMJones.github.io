@@ -8,7 +8,7 @@ var ctx;
 var leftPadding = 200;
 var upperPadding = 200;
 var tileSize = 20;
-var tileSizeInFocus = 25;
+var tileSizeInFocus = 23;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
 var focusedTile, previousFocusedTile;
 //var amountOfSeeds = 4;
@@ -48,7 +48,7 @@ function setCanvas() {
         canvas.setAttribute('width', '1350');
         canvas.setAttribute('height', '1000');
         tileSize = 21;
-        tileSizeInFocus = 35;
+        tileSizeInFocus = 30;
     }
 }
 
@@ -172,10 +172,12 @@ function setupButtons() {
             xLength: 150,
             yLength: 100,
             buttonText: bText,
-            player1Button: player1Button
+            player1Button: player1Button,
+            inFocus: false
         }
         buttons.push(button);
     }
+
 
 }
 
@@ -200,14 +202,25 @@ function drawButtons() {
         ctx.strokeRect(buttons[i].xCoord, buttons[i].yCoord, buttons[i].xLength, buttons[i].yLength);
         ctx.stroke();
 
-        drawText(buttons[i].buttonText, "22px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
+        if (!buttons[i].inFocus) {
+            drawText(buttons[i].buttonText, "22px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
+        }else{
+             drawText(buttons[i].buttonText, "32px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
+        }
         ctx.closePath();
     }
 }
 
 function drawTitles() {
-    drawText("Player 1", "30px Verdana", '#000000', 50, 50);
-    drawText("Player 2", "30px Verdana", '#000000', 1050, 50);
+    if (gameState.player1Turn = true) {
+        drawText("Player 1", "40px Verdana", '#000000', 50, 50);
+        drawText("Player 2", "30px Verdana", '#000000', 1050, 50);
+    } else {
+        drawText("Player 1", "30px Verdana", '#000000', 50, 50);
+        drawText("Player 2", "40px Verdana", '#000000', 1050, 50);
+    }
+
+
 }
 
 function drawTile(tile) {
@@ -224,7 +237,6 @@ function drawTile(tile) {
 
         } else {
             focusedTile = tile;
-
         }
 
     }
@@ -362,12 +374,10 @@ function pickStartSeed() {
 }
 
 function growIsland(startTile, o) {
-    console.log("island");
 
     for (var i = 0; i < 20; i++) {
         rndNum = Math.floor(Math.random() * 4);
 
-        console.log(rndNum);
         switch (rndNum) {
 
             case 0:

@@ -1,5 +1,13 @@
 var distanceToRegisterTileSelection = 20;
 
+var gameState = {
+    
+    player1Turn: true,
+    stateOfPlayer1: "Place",
+    stateOfPlayer2: "Place"
+}
+
+
 $(document).ready(function () {
     boardStart();
 });
@@ -40,13 +48,33 @@ function clickOrPress(x, y) {
 
         if (distance < distanceToRegisterTileSelection * 4) {
 
-            buttons[k].buttonText = "Clicked";
-            console.log("clicked");
+       
+            for(var m = 0; m<buttons.length; m++)
+                {
+                    buttons[m].inFocus = false;
+                }
+            switch(buttons[k].buttonText){
+                case "Place":
+                    gameState.stateOfPlayer = "Place";
+                    buttons[k].inFocus = true;
+                    break;
+                case "Move":
+                    gameState.stateOfPlayer = "Move";
+                    buttons[k].inFocus = true;
+                    break;
+                case "Attack":
+                    gameState.stateOfPlayer = "Attack";
+                    buttons[k].inFocus = true;
+                    break;
+                case "Fortify":
+                     gameState.stateOfPlayer = "Fortify";
+                    buttons[k].inFocus = true;
+                    break;
+                    
+            }
+            console.log(gameState.stateOfPlayer);
+
         }
     }
-
     drawCanvas();
-
-
-
 }
