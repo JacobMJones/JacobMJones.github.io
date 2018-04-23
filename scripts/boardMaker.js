@@ -10,7 +10,7 @@ var upperPadding = 200;
 var tileSize = 20;
 var tileSizeInFocus = 25;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
-var focusedTile;
+var focusedTile, previousFocusedTile;
 //var amountOfSeeds = 4;
 //var gFactor = 6;
 var squareSize = 19;
@@ -45,9 +45,9 @@ function setCanvas() {
         tileSize = 5;
         tileSizeInFocus = 15;
     } else {
-        canvas.setAttribute('width', '1250');
+        canvas.setAttribute('width', '1350');
         canvas.setAttribute('height', '1000');
-        tileSize = 19;
+        tileSize = 21;
         tileSizeInFocus = 35;
     }
 }
@@ -216,11 +216,17 @@ function drawTile(tile) {
 
     if (!tile.inFocus) {
 
-        ctx.arc(tile.xCoord, tile.yCoord, 18, 0, Math.PI * 2, true);
+        ctx.arc(tile.xCoord, tile.yCoord, 20, 0, Math.PI * 2, true);
     } else if (tile.inFocus) {
 
-        //   ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
-        focusedTile = tile;
+        if (tile == focusedTile) {
+            ctx.arc(tile.xCoord, tile.yCoord, 20, 0, Math.PI * 2, true);
+
+        } else {
+            focusedTile = tile;
+
+        }
+
     }
 
     ctx.fillStyle = tile.mainColor;
@@ -233,7 +239,7 @@ function drawTile(tile) {
 
 }
 
-function drawFocusedTile(tile, alreadyFocused) {
+function drawFocusedTile(tile) {
     ctx.beginPath();
     ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
     ctx.fillStyle = tile.mainColor;
@@ -245,15 +251,41 @@ function drawFocusedTile(tile, alreadyFocused) {
     ctx.closePath();
 }
 
+function focusTiles() {
+    if (focusedTile != undefined) {
+
+
+        if (focusedTile != previousFocusedTile) {
+            drawFocusedTile(focusedTile);
+            previousFocusedTile = focusedTile;
+        } else {
+            ctx.beginPath();
+            ctx.arc(previousFocusedTile.xCoord, previousFocusedTile.yCoord, 20, 0, Math.PI * 2, true);
+            ctx.fillStyle = previousFocusedTile.mainColor;
+            ctx.shadowColor = "transparent";
+            ctx.shadowBlur = 5;
+            ctx.shadowOffsetX = 2.5;
+            ctx.shadowOffsetY = 2.5;
+            ctx.fill();
+            ctx.closePath();
+            previousFocusedTile = undefined;
+        }
+    }
+
+}
+
 function drawCanvas() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawButtons();
     drawTitles();
     for (i = 0; i < tiles.length; i++) {
+
         drawTile(tiles[i]);
     }
-        drawFocusedTile(focusedTile);
+    focusTiles();
+
+
 }
 
 function setUpLandMassArrays() {
