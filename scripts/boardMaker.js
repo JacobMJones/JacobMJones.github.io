@@ -6,6 +6,7 @@ var leftPadding = 200;
 var upperPadding = 200;
 var tileSize = 15;
 var tileSizeInFocus = 25;
+
 function boardStart() {
     setCanvas();
     generateBoardCoords();
@@ -16,23 +17,21 @@ function boardStart() {
 function setCanvas() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-    
+
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-   
-    if(isMobile){
-        
-        
+
+    if (isMobile) {
+
+
         canvas.setAttribute('width', '500');
-canvas.setAttribute('height', '500');
-        var tileSize = 10;
-var tileSizeInFocus = 25;
-    } 
-    
-    else {
-         canvas.setAttribute('width', '1000');
-canvas.setAttribute('height', '1000');
-        var tileSize = 6.6;
-var tileSizeInFocus = 16.6;
+        canvas.setAttribute('height', '500');
+        tileSize = 19;
+        tileSizeInFocus = 25;
+    } else {
+        canvas.setAttribute('width', '1000');
+        canvas.setAttribute('height', '1000');
+        tileSize = 6.6;
+        tileSizeInFocus = 16.6;
     }
 }
 
@@ -81,25 +80,24 @@ function drawBoard() {
 }
 
 function drawTile(tile) {
-    
+
     ctx.beginPath();
-    
-    
-    if(tile.inFocus){
+
+
+    if (tile.inFocus) {
         ctx.fillStyle = '#8a8a8a';
         ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
-    }
-    else{
+    } else {
         ctx.fillStyle = tile.mainColor;
         ctx.arc(tile.xCoord, tile.yCoord, tileSize, 0, Math.PI * 2, true);
     }
-    
-    
+
+
     ctx.shadowColor = "#8a8a8a";
     ctx.shadowBlur = 5;
     ctx.shadowOffsetX = 2.5;
     ctx.shadowOffsetY = 2.5;
-    
+
     ctx.fill();
 
     ctx.closePath();
