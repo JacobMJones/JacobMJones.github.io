@@ -14,11 +14,12 @@ function clickOrPress(x, y) {
     var a;
     var b;
     var distance
+    
     for (i = 0; i < tiles.length; i++) {
+        
         a = x - tiles[i].xCoord;
         b = y - tiles[i].yCoord;
         distance = Math.sqrt(a * a + b * b);
-
 
         if (distance < distanceToRegisterTileSelection) {
             if (tiles[i].inFocus) {
@@ -26,8 +27,6 @@ function clickOrPress(x, y) {
             } else {
                 tiles[i].inFocus = true;
             }
-
-
         } else {
             tiles[i].inFocus = false;
         }

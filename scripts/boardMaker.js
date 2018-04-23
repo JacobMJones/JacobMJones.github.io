@@ -10,7 +10,7 @@ var upperPadding = 200;
 var tileSize = 20;
 var tileSizeInFocus = 25;
 var amountOfSeeds = Math.floor(Math.random() * 8 + 2);
-
+var focusedTile;
 //var amountOfSeeds = 4;
 //var gFactor = 6;
 var squareSize = 19;
@@ -214,23 +214,35 @@ function drawTile(tile) {
 
     ctx.beginPath();
 
-    if(!tile.inFocus) {
-        
+    if (!tile.inFocus) {
+
         ctx.arc(tile.xCoord, tile.yCoord, 18, 0, Math.PI * 2, true);
     } else if (tile.inFocus) {
-    
-        ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
-    
-    } 
+
+        //   ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
+        focusedTile = tile;
+    }
 
     ctx.fillStyle = tile.mainColor;
-    ctx.shadowColor = "#8a8a8a";
+    ctx.shadowColor = "transparent";
     ctx.shadowBlur = 5;
     ctx.shadowOffsetX = 2.5;
     ctx.shadowOffsetY = 2.5;
     ctx.fill();
     ctx.closePath();
 
+}
+
+function drawFocusedTile(tile, alreadyFocused) {
+    ctx.beginPath();
+    ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
+    ctx.fillStyle = tile.mainColor;
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 5;
+    ctx.shadowOffsetX = 2.5;
+    ctx.shadowOffsetY = 2.5;
+    ctx.fill();
+    ctx.closePath();
 }
 
 function drawCanvas() {
@@ -241,7 +253,7 @@ function drawCanvas() {
     for (i = 0; i < tiles.length; i++) {
         drawTile(tiles[i]);
     }
-
+        drawFocusedTile(focusedTile);
 }
 
 function setUpLandMassArrays() {
@@ -328,27 +340,26 @@ function growIsland(startTile, o) {
 
             case 0:
                 newTileSeedIndex = startTile.tileId + 1;
-                break;       
+                break;
             case 1:
                 newTileSeedIndex = startTile.tileId + 19;
                 break;
             case 2:
-                newTileSeedIndex = 
-                startTile.tileId -19;
+                newTileSeedIndex =
+                    startTile.tileId - 19;
                 break;
             case 3:
                 newTileSeedIndex = startTile.tileId - 1;
                 break;
-               
+
         }
         if (newTileSeedIndex < tiles.length - 1 && newTileSeedIndex > 0) {
             if (tiles[newTileSeedIndex].partOf == "" && tiles[newTileSeedIndex].mapBorder == false) {
                 tiles[newTileSeedIndex].partOf = o;
                 startTile = tiles[newTileSeedIndex];
             }
-        }
-        else{
-            
+        } else {
+
         }
     }
 
