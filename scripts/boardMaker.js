@@ -16,7 +16,15 @@ function boardStart() {
 function setCanvas() {
     canvas = document.getElementsByTagName("canvas")[0];
     ctx = canvas.getContext("2d");
-
+    
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if(isMobile){
+        canvas.setAttribute('width', '320');
+canvas.setAttribute('height', '480');
+    } else {
+         canvas.setAttribute('width', '1000');
+canvas.setAttribute('height', '1000');
+    }
 }
 
 
