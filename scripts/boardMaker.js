@@ -72,47 +72,80 @@ function setupTiles() {
 
 function setupButtons() {
 
-    for (var i = 0; i < 4; i++) {
-        
-        //this is to change the y coord
-        var yCo = (i * 100) + 150;
-        if (i == 0) {
-            yCo = 150;
-        } else {
-            yCo = (i * 150) + 150;
+    for (var i = 0; i < 8; i++) {
+
+     
+
+        var bt;
+        var player1Button;
+        var xCo;
+        switch (i) {
+            case 0:
+                bt = "Place";
+                player1Button = true;
+                xCo = 50;
+                yCo = 150;
+                break;
+            case 1:
+                bt = "Move";
+                player1Button = true;
+                 xCo = 50;
+                yCo = 300;
+                break;
+            case 2:
+                bt = "Attack";
+                player1Button = true;
+                 xCo = 50;
+                yCo = 450;
+                break;
+            case 3:
+                bt = "Fortify";
+                player1Button = true;
+                 xCo = 50;
+                yCo = 600;
+                break;
+            case 4:
+                bt = "Place";
+                player1Button = false;
+                 xCo = 1050;
+                yCo = 150;
+                break;
+            case 5:
+                bt = "Move";
+                player1Button = false;
+                yCo = 300;
+                 xCo = 1050;
+                break;
+            case 6:
+                bt = "Attack";
+                player1Button = false;
+                 xCo = 1050;
+                yCo = 450;
+                break;
+            case 7:
+                bt = "Fortify";
+                player1Button = false;
+                 xCo = 1050;
+                yCo = 600;
+                break;
         }
-        
+
+
         //midpoints fro clicking and
         //text formatting
-        var xMid = (50 + 150) / 2;
+        var xMid = xCo + 50;
         var yMid = (yCo + 50);
-        
-        var bt;
-            switch(i){
-                case 0:
-                   bt = "Place";
-                    break;
-                case 1:
-                   bt = "Move";
-                    break;
-                case 2:
-                    bt =  "Attack";
-                    break;
-                    case 3:
-                    bt =  "Fortify";
-                    break;
-            }
-       
-        
+
         var button = {
             color: "#2eae2e",
-            xCoord: 50,
+            xCoord: xCo,
             yCoord: yCo,
             xMidPoint: xMid,
             yMidPoint: yMid,
             xLength: 150,
             yLength: 100,
-            buttonText: bt
+            buttonText: bt,
+            player1Button: player1Button
         }
         buttons.push(button);
     }
