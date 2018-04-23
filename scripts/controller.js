@@ -1,10 +1,8 @@
-var distanceToRegisterSelection = 20; 
+var distanceToRegisterTileSelection = 20;
 
 $(document).ready(function () {
     boardStart();
 });
-
-
 
 function canvasClicked(event) {
     var x = event.offsetX;
@@ -12,34 +10,39 @@ function canvasClicked(event) {
     clickOrPress(x, y);
 }
 
-function pointInCircle(x, y, cx, cy, radius) {
-
-    var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
-   
-    return distancesquared <= radius * radius;
-}
-
 function clickOrPress(x, y) {
-
-
-
-  
+    var a;
+    var b;
+    var distance
     for (i = 0; i < tiles.length; i++) {
-        var a = x - tiles[i].xCoord;
-        var b = y - tiles[i].yCoord;
-        var distance = Math.sqrt(a * a + b * b);
-       
-        if (distance < distanceToRegisterSelection){
-            console.log(distance);
+        a = x - tiles[i].xCoord;
+        b = y - tiles[i].yCoord;
+        distance = Math.sqrt(a * a + b * b);
+
+        if (distance < distanceToRegisterTileSelection) {
+
             tiles[i].inFocus = true;
-           
-        }
-        else {
+
+        } else {
             tiles[i].inFocus = false;
         }
     }
- drawBoard();
-   
-      
+
+    for (var k = 0; k < buttons.length; k++) {
+        a = x - buttons[k].xMidPoint;
+        b = y - buttons[k].yMidPoint;
+
+        distance = Math.sqrt(a * a + b * b);
+
+        if (distance < distanceToRegisterTileSelection * 2) {
+
+            buttons[k].buttonText = "Clicked";
+            console.log("clicked");
+        }
+    }
+    
+    drawCanvas();
+
+
 
 }
