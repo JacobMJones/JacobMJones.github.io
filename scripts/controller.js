@@ -19,9 +19,14 @@ function clickOrPress(x, y) {
         b = y - tiles[i].yCoord;
         distance = Math.sqrt(a * a + b * b);
 
-        if (distance < distanceToRegisterTileSelection) {
 
-            tiles[i].inFocus = true;
+        if (distance < distanceToRegisterTileSelection) {
+            if (tiles[i].inFocus) {
+                tiles[i].inFocus = false;
+            } else {
+                tiles[i].inFocus = true;
+            }
+
 
         } else {
             tiles[i].inFocus = false;
@@ -40,7 +45,7 @@ function clickOrPress(x, y) {
             console.log("clicked");
         }
     }
-  
+
     drawCanvas();
 
 

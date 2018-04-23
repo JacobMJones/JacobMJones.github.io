@@ -47,8 +47,8 @@ function setCanvas() {
     } else {
         canvas.setAttribute('width', '1250');
         canvas.setAttribute('height', '1000');
-        tileSize = 15;
-        tileSizeInFocus = 25;
+        tileSize = 19;
+        tileSizeInFocus = 35;
     }
 }
 
@@ -214,16 +214,16 @@ function drawTile(tile) {
 
     ctx.beginPath();
 
-    if (tile.inFocus) {
-        ctx.fillStyle = '#8a8a8a';
-        ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
-        console.log(tile);
-    } else {
-        ctx.fillStyle = tile.mainColor;
+    if(!tile.inFocus) {
+        
         ctx.arc(tile.xCoord, tile.yCoord, 18, 0, Math.PI * 2, true);
-    }
-
+    } else if (tile.inFocus) {
     
+        ctx.arc(tile.xCoord, tile.yCoord, tileSizeInFocus, 0, Math.PI * 2, true);
+    
+    } 
+
+    ctx.fillStyle = tile.mainColor;
     ctx.shadowColor = "#8a8a8a";
     ctx.shadowBlur = 5;
     ctx.shadowOffsetX = 2.5;
