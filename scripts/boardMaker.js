@@ -66,7 +66,7 @@ function tileSetup() {
             xCoord: boardCoords[i].xPos,
             yCoord: boardCoords[i].yPos,
             inFocus: false,
-            mainColor: "#77cccc",
+            mainColor: "#77c000",
             startSeed: false
         }
         tiles.push(tile);
