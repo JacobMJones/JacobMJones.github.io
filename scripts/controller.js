@@ -21,8 +21,9 @@ function canvasClicked(event) {
 function clickOrPress(x, y) {
     var a;
     var b;
-    var distance
-    
+    var distance;
+    var clickedTile;
+    var clickedButton;
     for (i = 0; i < tiles.length; i++) {
         
         a = x - tiles[i].xCoord;
@@ -30,6 +31,7 @@ function clickOrPress(x, y) {
         distance = Math.sqrt(a * a + b * b);
 
         if (distance < distanceToRegisterTileSelection) {
+            clickedTile = true;
             if (tiles[i].inFocus) {
                 tiles[i].inFocus = false;
             } else {
@@ -48,7 +50,7 @@ function clickOrPress(x, y) {
 
         if (distance < distanceToRegisterTileSelection * 4) {
 
-       
+       clickedButton = true;
             for(var m = 0; m<buttons.length; m++)
                 {
                     buttons[m].inFocus = false;
@@ -76,5 +78,13 @@ function clickOrPress(x, y) {
 
         }
     }
-    drawCanvas();
+    if(clickedTile){
+        drawTile();
+        clickedTile = false;
+    }
+    if (clickedButton){
+        drawButtons();
+        clickedButton = false;
+    }
+    
 }

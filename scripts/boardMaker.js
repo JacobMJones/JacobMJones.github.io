@@ -112,6 +112,7 @@ function setupButtons() {
                 player1Button = true;
                 xCo = 50;
                 yCo = 150;
+                
                 break;
             case 1:
                 bText = "Move";
@@ -162,7 +163,12 @@ function setupButtons() {
         //text formatting
         var xMid = xCo + 50;
         var yMid = (yCo + 50);
-
+var inFocus;
+        if(i==0||i ==4){
+            inFocus = true;
+        }else{
+            inFocus = false;
+        }
         var button = {
             color: "#2eae2e",
             xCoord: xCo,
@@ -173,7 +179,7 @@ function setupButtons() {
             yLength: 100,
             buttonText: bText,
             player1Button: player1Button,
-            inFocus: false
+            inFocus: inFocus
         }
         buttons.push(button);
     }
@@ -196,7 +202,8 @@ function drawText(txt, font, col, x, y) {
 }
 
 function drawButtons() {
-
+ctx.clearRect(0, 75, 200, canvas.height);
+    ctx.clearRect(1000, 75, 200, canvas.height)
     for (var i = 0; i < buttons.length; i++) {
         ctx.beginPath();
         ctx.strokeRect(buttons[i].xCoord, buttons[i].yCoord, buttons[i].xLength, buttons[i].yLength);
@@ -223,10 +230,11 @@ function drawTitles() {
 
 }
 
-function drawTile(tile) {
-
-    ctx.beginPath();
-
+function drawTile() {
+ctx.clearRect(220, 0, canvas.width-550, canvas.height);
+    for (i = 0; i < tiles.length; i++) {
+tile = tiles[i];
+       ctx.beginPath();
     if (!tile.inFocus) {
 
         ctx.arc(tile.xCoord, tile.yCoord, 20, 0, Math.PI * 2, true);
@@ -248,6 +256,8 @@ function drawTile(tile) {
     ctx.shadowOffsetY = 2.5;
     ctx.fill();
     ctx.closePath();
+    }
+    focusTiles();
 
 }
 
@@ -286,18 +296,12 @@ function focusTiles() {
 
 }
 
-function drawCanvas() {
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function drawCanvas(buttons) {
+  
     drawButtons();
     drawTitles();
-    for (i = 0; i < tiles.length; i++) {
-
-        drawTile(tiles[i]);
-    }
-    focusTiles();
-
-
+    drawTile();
+   
 }
 
 function setUpLandMassArrays() {
