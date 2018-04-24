@@ -15,6 +15,10 @@ var focusedTile, previousFocusedTile;
 //var gFactor = 6;
 var squareSize = 19;
 
+var boardRect;
+var playerOneRect;
+var playerTwoRect;
+
 
 var gFactor = Math.floor(Math.random() * 6 + 6);
 
@@ -49,6 +53,32 @@ function setCanvas() {
         canvas.setAttribute('height', '1000');
         tileSize = 21;
         tileSizeInFocus = 30;
+    }
+    setRectangles();
+
+
+}
+
+function setRectangles() {
+    boardRect = {
+        x: 220,
+        y: 0,
+        width: canvas.width - 550,
+        height: canvas.height
+    }
+    playerOneRect =
+    {
+        x: 0,
+        y: 70,
+        width: 200,
+        height:  canvas.height
+    }
+      playerTwoRect =
+    {
+        x: 1000,
+        y: 70,
+        width: 200,
+        height:  canvas.height
     }
 }
 
@@ -112,7 +142,7 @@ function setupButtons() {
                 player1Button = true;
                 xCo = 50;
                 yCo = 150;
-                
+
                 break;
             case 1:
                 bText = "Move";
@@ -163,10 +193,10 @@ function setupButtons() {
         //text formatting
         var xMid = xCo + 50;
         var yMid = (yCo + 50);
-var inFocus;
-        if(i==0||i ==4){
+        var inFocus;
+        if (i == 0 || i == 4) {
             inFocus = true;
-        }else{
+        } else {
             inFocus = false;
         }
         var button = {
@@ -202,8 +232,8 @@ function drawText(txt, font, col, x, y) {
 }
 
 function drawButtons() {
-ctx.clearRect(0, 75, 200, canvas.height);
-    ctx.clearRect(1000, 75, 200, canvas.height)
+    ctx.clearRect(playerOneRect.x, playerOneRect.y, playerOneRect.width, canvas.height);
+    ctx.clearRect(playerTwoRect.x, playerTwoRect.y, playerTwoRect.width, playerTwoRect.height);
     for (var i = 0; i < buttons.length; i++) {
         ctx.beginPath();
         ctx.strokeRect(buttons[i].xCoord, buttons[i].yCoord, buttons[i].xLength, buttons[i].yLength);
@@ -211,8 +241,8 @@ ctx.clearRect(0, 75, 200, canvas.height);
 
         if (!buttons[i].inFocus) {
             drawText(buttons[i].buttonText, "22px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
-        }else{
-             drawText(buttons[i].buttonText, "32px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
+        } else {
+            drawText(buttons[i].buttonText, "32px Arial", '#000000', buttons[i].xMidPoint, buttons[i].yMidPoint);
         }
         ctx.closePath();
     }
@@ -231,31 +261,31 @@ function drawTitles() {
 }
 
 function drawTile() {
-ctx.clearRect(220, 0, canvas.width-550, canvas.height);
+    ctx.clearRect(boardRect.x, boardRect.y, boardRect.width, boardRect.height);
     for (i = 0; i < tiles.length; i++) {
-tile = tiles[i];
-       ctx.beginPath();
-    if (!tile.inFocus) {
+        tile = tiles[i];
+        ctx.beginPath();
+        if (!tile.inFocus) {
 
-        ctx.arc(tile.xCoord, tile.yCoord, 20, 0, Math.PI * 2, true);
-    } else if (tile.inFocus) {
-
-        if (tile == focusedTile) {
             ctx.arc(tile.xCoord, tile.yCoord, 20, 0, Math.PI * 2, true);
+        } else if (tile.inFocus) {
 
-        } else {
-            focusedTile = tile;
+            if (tile == focusedTile) {
+                ctx.arc(tile.xCoord, tile.yCoord, 20, 0, Math.PI * 2, true);
+
+            } else {
+                focusedTile = tile;
+            }
+
         }
 
-    }
-
-    ctx.fillStyle = tile.mainColor;
-    ctx.shadowColor = "transparent";
-    ctx.shadowBlur = 5;
-    ctx.shadowOffsetX = 2.5;
-    ctx.shadowOffsetY = 2.5;
-    ctx.fill();
-    ctx.closePath();
+        ctx.fillStyle = tile.mainColor;
+        ctx.shadowColor = "transparent";
+        ctx.shadowBlur = 5;
+        ctx.shadowOffsetX = 2.5;
+        ctx.shadowOffsetY = 2.5;
+        ctx.fill();
+        ctx.closePath();
     }
     focusTiles();
 
@@ -297,11 +327,11 @@ function focusTiles() {
 }
 
 function drawCanvas(buttons) {
-  
+
     drawButtons();
     drawTitles();
     drawTile();
-   
+
 }
 
 function setUpLandMassArrays() {
