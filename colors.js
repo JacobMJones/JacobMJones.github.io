@@ -23,15 +23,9 @@ var colorArray = [
         ];
 $(document).ready(function () {
     console.log('colors is loading');
-	makeColorArray();
+
 
 });
 
-function makeColorArray(){
-    
-    
-colorArray = [ 
 
-    ]
-    console.log(colorArray);
-}
+    

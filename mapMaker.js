@@ -1,4 +1,4 @@
-var mapSize = 10;
+var mapSize = 20;
 var originX = 100;
 var originY = 100;
 var hexagonGrid;
@@ -18,8 +18,8 @@ function init() {
 	//the tile object is created here
 	hexagonGrid.setHexGrid(mapSize, mapSize, originX, originY, false);
 
-	//pickSeeds();
-	//growLand();
+	pickSeeds();
+	growLand();
 	drawMap();
 
 }
@@ -46,35 +46,40 @@ function pickSeeds() {
 		if (seeds == 0) {
 			seedsChosen = true;
 		}
-
 	}
-
 }
 
 function findNeighbours(tile) {
+    var neighbours = [];
+    var n = [];  
+    
+	if(tile.column % 2 !== 0){
+        
+       n = [  
+	tile.tileId - mapSize - 1 ,     
+	tile.tileId - 2,      
+	tile.tileId + mapSize - 1,         
+	tile.tileId + mapSize,        
+    tile.tileId,        
+    tile.tileId - mapSize
+           ]
+        
+    }
+	else{
+        n = [  
+	tile.tileId - mapSize  - 1 ,
+    tile.tileId - mapSize  - 2,
+    tile.tileId + mapSize - 1,
+    tile.tileId + mapSize - 2,
+    tile.tileId - 2, 
+            tile.tileId
+           ]
+        
+    }
 
-
-	/*
-	var n1 = tile.tileId - mapSize - 1;
-	var n2 = tile.tileId + mapSize - 1;
-
-	if(n1 > 0 && n1 < mapSize*mapSize){
-		neighbours.push(tiles[n1]);
-	}
-	if(n2 > 0 && n2 < mapSize*mapSize){
-		neighbours.push(tiles[n2]);
-	}
 	
-	*/
-	var neighbours = [];
-	var n = [
-	tile.tileId - mapSize,
-	tile.tileId - 1,
-	tile.tileId + mapSize,
-	tile.tileId + mapSize + 1,
-	tile.tileId + 1,
-	tile.tileId - mapSize + 1
-	];
+
+   
 
 	for (var i = 0; i < n.length; i++) {
 
@@ -120,12 +125,16 @@ var n = [
 }
 
 function growLand() {
-	for (var i = 0; i < seedArray.length; i++) {
-
-		//seedArray[i].color = landColor;
-		var neigh = seedArray[i].neighbours;
+    
+	for (var i = 0; i < seedArray.length; i++) {	
+       
+         var neigh = seedArray[i].neighbours;  
+		var col = colorArray[4+u];
+		//console.log('color' + col);
 		for (var u = 0; u < neigh.length; u++) {
-			neigh[u].color = landColor;
+           
+        
+			neigh[u].color = col;
 		}
 	}
 }
