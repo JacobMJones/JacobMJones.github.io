@@ -4,15 +4,6 @@ function tileClicked(tile) {
 
 	drawTile(tile, waterSelectedColor);
    
-    /*
-    var n = tile.neighbours;
-	for(var i = 0; i < n.length; i++){
-        	drawTile(n[i], waterSelectedColor);
-
-       // console.log(n);
-    }
-    */
-
 
 }
 

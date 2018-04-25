@@ -23,7 +23,7 @@ var colorArray = [
         ];
 $(document).ready(function () {
     console.log('colors is loading');
-
+console.log(colorArray);
 
 });
 

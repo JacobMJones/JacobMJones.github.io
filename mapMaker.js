@@ -2,7 +2,7 @@ var mapSize = 20;
 var originX = 100;
 var originY = 100;
 var hexagonGrid;
-var seeds = 5;
+var seeds =5;
 var seedArray = [];
 $(document).ready(function () {
 	init();
@@ -127,14 +127,17 @@ var n = [
 function growLand() {
     
 	for (var i = 0; i < seedArray.length; i++) {	
-       
+		c = i + 5;
+     var col = colorArray[c];
+		seedArray[i].color = col;
          var neigh = seedArray[i].neighbours;  
-		var col = colorArray[4+u];
-		//console.log('color' + col);
+		
+
 		for (var u = 0; u < neigh.length; u++) {
            
         
 			neigh[u].color = col;
+			neigh[u].partOf = 'country' + u;
 		}
 	}
 }
