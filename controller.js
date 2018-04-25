@@ -3,14 +3,20 @@ function tileClicked(tile) {
 
 
 	drawTile(tile, waterSelectedColor);
-	var neigh = tile.neighbours[0];
+   
+    /*
+    var n = tile.neighbours;
+	for(var i = 0; i < n.length; i++){
+        	drawTile(n[i], waterSelectedColor);
 
-	drawTile(neigh, waterSelectedColor);
+       // console.log(n);
+    }
+    */
+
 
 }
 
 function drawTile(tile, color) {
-
 
 	var drawy = tile.column % 2 == 0 ? (tile.row * hexagonGrid.height) + hexagonGrid.canvasOriginY + 6 : (tile.row * hexagonGrid.height) + hexagonGrid.canvasOriginY + 6 + (hexagonGrid.height / 2);
 	var drawx = (tile.column * hexagonGrid.side) + hexagonGrid.canvasOriginX;

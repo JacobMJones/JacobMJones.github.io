@@ -89,12 +89,9 @@ HexagonGrid.prototype.setHexGrid = function (rows, cols, originX, originY, isDeb
 
 
 for(var r = 0; r < tiles.length; r++){
-	
-	console.log(r);
 	t = tiles[r];
 	n = findNeighbours(t);
 	t.neighbours = n;
-
 }
 
 
