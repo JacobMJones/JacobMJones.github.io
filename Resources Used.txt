@@ -1,0 +1,33 @@
+How to Draw a Rectangle
+https://stackoverflow.com/questions/20690408/how-to-draw-a-rectangle-in-html-or-css
+
+
+How to Create and Style a Div
+https://stackoverflow.com/questions/6840326/how-can-i-create-and-style-a-div-using-javascript
+
+
+Add Text  and CSS to Div
+http://api.jquery.com/text/
+https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_css_set_multiple
+https://learn.jquery.com/performance/append-outside-loop/
+
+
+Stack Divs Horizontally
+http://jsfiddle.net/watson/Gsj27/3/
+
+Align Divs
+https://css-tricks.com/snippets/css/cross-browser-inline-block/
+https://stackoverflow.com/questions/585945/how-to-align-content-of-a-div-to-the-bottom
+
+
+Lines
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_hr_test
+https://stackoverflow.com/questions/3148415/how-to-make-a-vertical-line-in-html
+
+
+Parse string by comma/space
+https://stackoverflow.com/questions/10398931/javascript-how-to-remove-text-from-a-string
+https://stackoverflow.com/questions/14867835/get-substring-between-two-characters-using-javascript
+
+Count occurences of a char
+https://teamtreehouse.com/community/how-to-count-the-number-of-times-a-specific-character-appears-in-a-string
